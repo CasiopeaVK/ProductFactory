@@ -56,9 +56,15 @@
                         </VBox>
                      </center>
                   </BorderPane>
+<<<<<<< HEAD
+                  <ScrollPane fx:id="groupScrollPane" prefHeight="200.0" prefWidth="200.0">
+                     <content>
+                        <TilePane fx:id="groupTilePane" prefHeight="351.0" prefWidth="477.0" />
+=======
                   <ScrollPane fx:id="groupScrollPane">
                      <content>
                         <TilePane fx:id="groupTilePane" />
+>>>>>>> 8a26742211061e4d3721327d4e3e4ce891a84d78
                      </content>
                   </ScrollPane>
                </items>
