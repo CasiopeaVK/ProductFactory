@@ -31,7 +31,7 @@
                         <JFXButton BorderPane.alignment="CENTER" />
                      </top>
                      <bottom>
-                        <JFXButton BorderPane.alignment="CENTER" />
+                        <JFXButton fx:id="btn_addGroup" text="Add new group" BorderPane.alignment="CENTER" />
                      </bottom>
                      <center>
                         <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
@@ -41,13 +41,13 @@
                                  <content>
                                     <VBox>
                                        <children>
-                                          <JFXRadioButton>
+                                          <JFXRadioButton fx:id="rb_alphabet" text="Alphabet">
                                              <toggleGroup>
                                                 <ToggleGroup fx:id="group" />
                                              </toggleGroup>
                                           </JFXRadioButton>
-                                          <JFXRadioButton toggleGroup="$group" />
-                                          <JFXRadioButton toggleGroup="$group" />
+                                          <JFXRadioButton fx:id="rb_cost" text="Cost" toggleGroup="$group" />
+                                          <JFXRadioButton fx:id="rb_count" text="Count" toggleGroup="$group" />
                                        </children>
                                     </VBox>
                                  </content>
@@ -56,9 +56,9 @@
                         </VBox>
                      </center>
                   </BorderPane>
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                  <ScrollPane fx:id="groupScrollPane" prefHeight="200.0" prefWidth="200.0">
                      <content>
-                        <TilePane prefHeight="351.0" prefWidth="477.0" />
+                        <TilePane fx:id="groupTilePane" prefHeight="351.0" prefWidth="477.0" />
                      </content>
                   </ScrollPane>
                </items>
@@ -163,12 +163,12 @@
                         </VBox>
                      </center>
                   </BorderPane>
-                  <TableView prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="writeOffTable" prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Data" />
-                      <TableColumn prefWidth="75.0" text="Name" />
-                        <TableColumn prefWidth="75.0" text="Count" />
-                        <TableColumn prefWidth="75.0" text="Cost" />
+                      <TableColumn fx:id="dataColumn" prefWidth="75.0" text="Data" />
+                      <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
+                        <TableColumn fx:id="countColumn" prefWidth="75.0" text="Count" />
+                        <TableColumn fx:id="costColumn" prefWidth="75.0" text="Cost" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
