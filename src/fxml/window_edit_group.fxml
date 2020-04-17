@@ -40,7 +40,7 @@
             <JFXButton buttonType="RAISED" text="Delete" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <ImageView fitHeight="125.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="" />
+                  <Image url="@../GGJ%20game/Characters_White.jpg" />
                </image>
             </ImageView>
          </children>
