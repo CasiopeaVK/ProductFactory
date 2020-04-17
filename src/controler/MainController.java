@@ -62,7 +62,7 @@ public class MainController implements Initializable {
 
 
     public void addGroup(ActionEvent actionEvent) {
-        AddNewGroupController groupController = new AddNewGroupController();
+        AddNewGroupController groupController = new AddNewGroupController(groupTilePane);
         Scene scene = new Scene(groupController, 400, 300);
         Stage window = new Stage();
         window.setTitle("Add new group:");

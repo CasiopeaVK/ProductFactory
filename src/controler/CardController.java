@@ -30,11 +30,11 @@ public class CardController extends Pane {
     public CardController(Image groupIcon, String name, String description){
         group = new ProductGroup(groupIcon,name,description);
 
-        try {
-            DBContext.writeProductGroup(group);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            DBContext.writeProductGroup(group);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
                 "../fxml/card.fxml"));
