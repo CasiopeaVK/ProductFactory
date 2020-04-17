@@ -27,6 +27,7 @@ public class CardController extends Pane {
     private JFXButton btn_refactor;
 
     private ProductGroup group;
+
     public CardController(Image groupIcon, String name, String description){
         group = new ProductGroup(groupIcon,name,description);
 

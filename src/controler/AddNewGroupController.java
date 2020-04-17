@@ -8,6 +8,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -38,7 +39,7 @@ public class AddNewGroupController extends AnchorPane {
     @FXML
     private JFXButton btn_import;
 
-    private  Image image;
+    private Image image;
     private TilePane groupPane;
 
     public AddNewGroupController(TilePane groupPane) {
@@ -53,23 +54,47 @@ public class AddNewGroupController extends AnchorPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+        setValidation(nameField);
     }
 
     @FXML
-    public void choosePhoto(){
+    public void choosePhoto() {
         final FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(imageView.getScene().getWindow());
+        if(file == null) return;
         image = new Image(file.toURI().toString());
         imageView.setImage(image);
     }
 
     @FXML
-    public void saveGroup(){
-        CardController cardController = new CardController(image,nameField.getText(),descriptionField.getText());
+    public void saveGroup() {
+        if(imageView.getImage() == null || !nameField.validate()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("You miss something!");
+            alert.showAndWait();
+            return;
+        }
+        CardController cardController = new CardController(image, nameField.getText(), descriptionField.getText());
         groupPane.getChildren().add(cardController);
 
+        //TODO add to DB
         //частина коду для закриття вікна
-        Stage stage = (Stage)btn_confirm.getScene().getWindow();
+        Stage stage = (Stage) btn_confirm.getScene().getWindow();
         stage.close();
+    }
+
+    public void setValidation(JFXTextField textField) {
+        RequiredFieldValidator validator = new RequiredFieldValidator();
+        textField.getValidators().add(validator);
+        validator.setMessage("No empty input!");
+        textField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean newValue) {
+                if (!newValue) {
+                    textField.validate();
+                }
+            }
+        });
     }
 }
