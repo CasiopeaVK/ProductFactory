@@ -6,7 +6,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-
+import javafx.scene.image.Image;
 public class ProductGroup {
     private Image groupIcon;
     private String name;

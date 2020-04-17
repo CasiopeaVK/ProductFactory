@@ -62,8 +62,6 @@ public class MainController implements Initializable {
 
 
     public void addGroup(ActionEvent actionEvent) {
-        System.out.println("KEK");
-        groupTilePane.getChildren().add(new CardController());
         AddNewGroupController groupController = new AddNewGroupController();
         Scene scene = new Scene(groupController, 400, 300);
         Stage window = new Stage();
