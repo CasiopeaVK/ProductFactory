@@ -11,6 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.TilePane;
+
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -63,5 +64,11 @@ public class MainController implements Initializable {
     public void addGroup(ActionEvent actionEvent) {
         System.out.println("KEK");
         groupTilePane.getChildren().add(new CardController());
+        AddNewGroupController groupController = new AddNewGroupController();
+        Scene scene = new Scene(groupController, 400, 300);
+        Stage window = new Stage();
+        window.setTitle("Add new group:");
+        window.setScene(scene);
+        window.show();
     }
 }
