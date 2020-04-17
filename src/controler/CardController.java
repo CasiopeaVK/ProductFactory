@@ -1,10 +1,12 @@
 package controler;
 
 import com.jfoenix.controls.JFXButton;
+
 import db.DBContext;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.ImageView;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -26,9 +28,12 @@ public class CardController extends Pane {
     @FXML
     private JFXButton btn_refactor;
 
+    @FXML
+    private Label cardLabel;
+
     private ProductGroup group;
-    public CardController(Image groupIcon, String name, String description){
-        group = new ProductGroup(groupIcon,name,description);
+    public CardController(ProductGroup group){
+        this.group = group;
 
 //        try {
 //            DBContext.writeProductGroup(group);
@@ -47,6 +52,7 @@ public class CardController extends Pane {
             throw new RuntimeException(exception);
         }
 
-        imgGroup.setImage(groupIcon);
+        cardLabel.setText(group.getName());
+        imgGroup.setImage(group.getGroupIcon());
     }
 }

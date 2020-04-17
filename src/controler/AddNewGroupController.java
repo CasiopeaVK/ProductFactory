@@ -15,6 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.ProductGroup;
 
 import java.io.File;
 import java.io.IOException;
@@ -65,7 +66,8 @@ public class AddNewGroupController extends AnchorPane {
 
     @FXML
     public void saveGroup(){
-        CardController cardController = new CardController(image,nameField.getText(),descriptionField.getText());
+        ProductGroup productGroup = new ProductGroup(image,nameField.getText(),descriptionField.getText());
+        CardController cardController = new CardController(productGroup);
         groupPane.getChildren().add(cardController);
 
         //частина коду для закриття вікна

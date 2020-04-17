@@ -25,6 +25,9 @@ public class ProductGroup {
         return  DBContext.getProductGroup(file);
     }
 
+    public String getName(){return name;}
+
+    public Image getGroupIcon(){return groupIcon;}
     public File getSourceFile() {
         return this.sourceFile;
     }
