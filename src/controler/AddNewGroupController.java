@@ -6,12 +6,15 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
-public class AddNewGroupController extends Pane {
+import java.io.IOException;
+
+public class AddNewGroupController extends AnchorPane {
     @FXML
     private JFXTextField nameField;
 
@@ -31,21 +34,14 @@ public class AddNewGroupController extends Pane {
     private JFXButton btn_import;
 
     public AddNewGroupController() {
-        RequiredFieldValidator validator = new RequiredFieldValidator();
-        nameField.getValidators().add(validator);
-        validator.setMessage("Cannot be empty!");
-        nameField.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean newValue) {
-                if (!newValue) {
-                    nameField.validate();
-                }
-            }
-        });
-    }
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../fxml/window_add_new_group.fxml"));
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
 
-    @FXML
-    public void getProductGroup(ActionEvent actionEvent) {
-
+        try {
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
     }
 }
