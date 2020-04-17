@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.ProductGroup;
 
 import java.io.File;
 import java.io.IOException;
@@ -67,6 +68,7 @@ public class AddNewGroupController extends AnchorPane {
     }
 
     @FXML
+<<<<<<< HEAD
     public void saveGroup() {
         if(imageView.getImage() == null || !nameField.validate()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -76,6 +78,11 @@ public class AddNewGroupController extends AnchorPane {
             return;
         }
         CardController cardController = new CardController(image, nameField.getText(), descriptionField.getText());
+=======
+    public void saveGroup(){
+        ProductGroup productGroup = new ProductGroup(image,nameField.getText(),descriptionField.getText());
+        CardController cardController = new CardController(productGroup);
+>>>>>>> 7e5a61ebd61e941e8d85c13a991fe636b2a14318
         groupPane.getChildren().add(cardController);
 
         //TODO add to DB
