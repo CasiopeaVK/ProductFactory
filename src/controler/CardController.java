@@ -32,14 +32,12 @@ public class CardController extends Pane {
     private Label cardLabel;
 
     private ProductGroup group;
-<<<<<<< HEAD
 
     public CardController(Image groupIcon, String name, String description){
         group = new ProductGroup(groupIcon,name,description);
-=======
+    }
     public CardController(ProductGroup group){
         this.group = group;
->>>>>>> 7e5a61ebd61e941e8d85c13a991fe636b2a14318
 
 //        try {
 //            DBContext.writeProductGroup(group);

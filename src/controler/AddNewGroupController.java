@@ -62,27 +62,23 @@ public class AddNewGroupController extends AnchorPane {
     public void choosePhoto() {
         final FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(imageView.getScene().getWindow());
-        if(file == null) return;
+        if (file == null) return;
         image = new Image(file.toURI().toString());
         imageView.setImage(image);
     }
 
     @FXML
-<<<<<<< HEAD
     public void saveGroup() {
-        if(imageView.getImage() == null || !nameField.validate()) {
+        if (imageView.getImage() == null || !nameField.validate()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setContentText("You miss something!");
             alert.showAndWait();
             return;
         }
-        CardController cardController = new CardController(image, nameField.getText(), descriptionField.getText());
-=======
-    public void saveGroup(){
-        ProductGroup productGroup = new ProductGroup(image,nameField.getText(),descriptionField.getText());
+
+        ProductGroup productGroup = new ProductGroup(image, nameField.getText(), descriptionField.getText());
         CardController cardController = new CardController(productGroup);
->>>>>>> 7e5a61ebd61e941e8d85c13a991fe636b2a14318
         groupPane.getChildren().add(cardController);
 
         //TODO add to DB
