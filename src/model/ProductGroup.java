@@ -6,7 +6,9 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+
 import javafx.scene.image.Image;
+
 public class ProductGroup {
     private Image groupIcon;
     private String name;
@@ -22,12 +24,17 @@ public class ProductGroup {
     }
 
     public static ProductGroup getProductGroup(File file) throws FileNotFoundException {
-        return  DBContext.getProductGroup(file);
+        return DBContext.getProductGroup(file);
     }
 
-    public String getName(){return name;}
+    public String getName() {
+        return name;
+    }
 
-    public Image getGroupIcon(){return groupIcon;}
+    public Image getGroupIcon() {
+        return groupIcon;
+    }
+
     public File getSourceFile() {
         return this.sourceFile;
     }
@@ -39,5 +46,9 @@ public class ProductGroup {
 
     public void setSourceFile(File file) {
         this.sourceFile = sourceFile;
+    }
+
+    public ArrayList<Product> getProducts() {
+        return products;
     }
 }

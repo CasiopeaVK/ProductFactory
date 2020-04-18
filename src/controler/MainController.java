@@ -10,6 +10,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.layout.TilePane;
 
 import javafx.stage.Stage;
@@ -60,7 +61,7 @@ public class MainController implements Initializable {
 
     }
 
-
+    @FXML
     public void addGroup(ActionEvent actionEvent) {
         AddNewGroupController groupController = new AddNewGroupController(groupTilePane);
         Scene scene = new Scene(groupController, 400, 300);
