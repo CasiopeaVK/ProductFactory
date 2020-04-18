@@ -2,18 +2,16 @@ package controler;
 
 import com.jfoenix.controls.JFXButton;
 
-import db.DBContext;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import model.Product;
+import javafx.stage.Stage;
 import model.ProductGroup;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class CardController extends Pane {
@@ -32,15 +30,18 @@ public class CardController extends Pane {
     private Label cardLabel;
 
     private ProductGroup group;
+
+    public CardController(Image groupIcon, String name, String description){
+        group = new ProductGroup(groupIcon,name,description);
+        setStartConfig();
+    }
+
     public CardController(ProductGroup group){
         this.group = group;
+        setStartConfig();
+    }
 
-//        try {
-//            DBContext.writeProductGroup(group);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
+    private void setStartConfig(){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
                 "../fxml/card.fxml"));
         fxmlLoader.setRoot(this);
@@ -54,5 +55,18 @@ public class CardController extends Pane {
 
         cardLabel.setText(group.getName());
         imgGroup.setImage(group.getGroupIcon());
+//        btn_refactor.setOnAction(actionEvent -> showEditWindow());
     }
+
+    @FXML
+    void showEditWindow(){
+        EditWindowController editWindowController = new EditWindowController(group, imgGroup, cardLabel);
+
+        Scene scene = new Scene(editWindowController);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
 }
