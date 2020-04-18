@@ -13,10 +13,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Product;
 import model.ProductGroup;
 
+import java.io.File;
 import java.io.IOException;
 
 public class EditWindowController extends AnchorPane {
@@ -86,6 +88,13 @@ public class EditWindowController extends AnchorPane {
         });
     }
 
+    @FXML
+    public void choosePhoto() {
+        final FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(imageField.getScene().getWindow());
+        if (file == null) return;
+        imageField.setImage(new Image(file.toURI().toString()));
+    }
 
     @FXML
     public void saveChange(){
