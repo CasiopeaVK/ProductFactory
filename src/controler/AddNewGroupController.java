@@ -68,7 +68,7 @@ public class AddNewGroupController extends AnchorPane {
     }
 
     @FXML
-    public void saveGroup() {
+    public void saveGroup() throws IOException {
         if (imageView.getImage() == null || !nameField.validate()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -77,7 +77,7 @@ public class AddNewGroupController extends AnchorPane {
             return;
         }
 
-        ProductGroup productGroup = new ProductGroup(image, nameField.getText(), descriptionField.getText());
+        ProductGroup productGroup = new ProductGroup(new File(image.getUrl()), nameField.getText(), descriptionField.getText());
         CardController cardController = new CardController(productGroup);
         groupPane.getChildren().add(cardController);
 

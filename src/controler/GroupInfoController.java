@@ -2,6 +2,10 @@ package controler;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.DoubleValidator;
+import com.jfoenix.validation.IntegerValidator;
+import com.jfoenix.validation.NumberValidator;
+import com.jfoenix.validation.RequiredFieldValidator;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -9,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -24,6 +29,9 @@ import model.ProductGroup;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 public class GroupInfoController extends SplitPane {
 
@@ -51,6 +59,19 @@ public class GroupInfoController extends SplitPane {
     @FXML
     private JFXTextField searchField;
 
+    @FXML
+    private JFXTextField nameField;
+
+    @FXML
+    private JFXTextField quantityField;
+
+    @FXML
+    private JFXTextField priceField;
+
+    @FXML
+    private JFXButton btn_addProduct;
+
+    private ProductGroup productGroup;
 
     public GroupInfoController(ProductGroup group) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../fxml/window_group_info.fxml"));
@@ -62,7 +83,76 @@ public class GroupInfoController extends SplitPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+        this.productGroup = group;
         initializeTable(group);
+        setValidation();
+    }
+
+    @FXML
+    void addProduct(ActionEvent event) {
+        System.out.println("KEK");
+        if (!nameField.validate() || !quantityField.validate() || !priceField.validate()) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("You miss something!");
+            alert.showAndWait();
+            return;
+        }
+        String name = nameField.getText();
+        Integer quantity = Integer.parseInt(quantityField.getText());
+        Double price = Double.parseDouble(priceField.getText());
+        Product product = new Product(name, quantity, price, true);
+        products.add(product);
+    }
+
+    @FXML
+    public void deleteProducts(ActionEvent actionEvent) {
+        List<Product> selectedItems = tableView.getSelectionModel().getSelectedItems();
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm action!");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you want to delete selected?");
+        Optional<ButtonType> action = alert.showAndWait();
+
+        if (action.get() == ButtonType.OK) {
+            products.removeAll(selectedItems);
+        }
+    }
+
+    @FXML
+    public void showGroup(ActionEvent actionEvent) {
+        System.out.println(new ArrayList<Product>(products));
+    }
+
+    private void setValidation() {
+        RequiredFieldValidator textValidator = new RequiredFieldValidator();
+        textValidator.setMessage("No empty input!");
+        nameField.getValidators().add(textValidator);
+        nameField.focusedProperty().addListener((o, oldVal, newVal) -> {
+            if (!newVal) {
+                nameField.validate();
+            }
+        });
+
+        IntegerValidator numValidator = new IntegerValidator();
+        numValidator.setMessage("Not int num!");
+        quantityField.getValidators().add(numValidator);
+        quantityField.focusedProperty().addListener((o, oldVal, newVal) -> {
+            if (!newVal) {
+                quantityField.validate();
+            }
+        });
+
+        DoubleValidator doubleValidator = new DoubleValidator();
+        doubleValidator.setMessage("Not double value!");
+        priceField.getValidators().add(doubleValidator);
+        priceField.focusedProperty().addListener((o, oldVal, newVal) -> {
+            if (!newVal) {
+                priceField.validate();
+            }
+        });
     }
 
     private void initializeTable(ProductGroup group) {

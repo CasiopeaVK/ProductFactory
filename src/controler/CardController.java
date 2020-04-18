@@ -2,11 +2,9 @@ package controler;
 
 import com.jfoenix.controls.JFXButton;
 
-<<<<<<< HEAD
+
 import db.DBContext;
 import javafx.event.ActionEvent;
-=======
->>>>>>> 431975303b58d11cf30628c73a3861763a8bdb71
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,13 +13,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-<<<<<<< HEAD
 import model.Product;
 import model.ProductGroup;
-=======
 import model.ProductGroup;
 
->>>>>>> 431975303b58d11cf30628c73a3861763a8bdb71
+import java.io.File;
 import java.io.IOException;
 
 public class CardController extends Pane {
@@ -41,20 +37,17 @@ public class CardController extends Pane {
 
     private ProductGroup group;
 
-    public CardController(Image groupIcon, String name, String description){
-        group = new ProductGroup(groupIcon,name,description);
+    public CardController(Image groupIcon, String name, String description) throws IOException {
+        group = new ProductGroup(new File(groupIcon.getUrl()),name,description);
         setStartConfig();
     }
 
-    public CardController(ProductGroup group){
+    public CardController(ProductGroup group) throws IOException {
         this.group = group;
-<<<<<<< HEAD
-=======
         setStartConfig();
     }
 
-    private void setStartConfig(){
->>>>>>> 431975303b58d11cf30628c73a3861763a8bdb71
+    private void setStartConfig() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
                 "../fxml/card.fxml"));
         fxmlLoader.setRoot(this);
@@ -72,7 +65,6 @@ public class CardController extends Pane {
     }
 
     @FXML
-<<<<<<< HEAD
     void openInfoWindow(ActionEvent event) {
         GroupInfoController groupInfoController = new GroupInfoController(group);
         Scene scene = new Scene(groupInfoController, 400, 300);
@@ -81,8 +73,8 @@ public class CardController extends Pane {
         window.setScene(scene);
         window.show();
     }
-=======
-    void showEditWindow(){
+    @FXML
+    void showEditWindow() throws IOException {
         EditWindowController editWindowController = new EditWindowController(group, imgGroup, cardLabel);
 
         Scene scene = new Scene(editWindowController);
@@ -90,7 +82,4 @@ public class CardController extends Pane {
         stage.setScene(scene);
         stage.show();
     }
-
-
->>>>>>> 431975303b58d11cf30628c73a3861763a8bdb71
 }

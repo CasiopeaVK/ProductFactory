@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -18,6 +19,8 @@ import javafx.stage.Stage;
 import model.Product;
 import model.ProductGroup;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -45,7 +48,7 @@ public class EditWindowController extends AnchorPane {
     private ImageView cardPhoto;
     private Label cardLabel;
 
-    public EditWindowController(ProductGroup group, ImageView cardPhoto, Label cardLabel){
+    public EditWindowController(ProductGroup group, ImageView cardPhoto, Label cardLabel) throws IOException {
         loadFXml();
         initWindow(group,cardPhoto,cardLabel);
     }
@@ -63,7 +66,7 @@ public class EditWindowController extends AnchorPane {
         }
     }
 
-    private void initWindow(ProductGroup group, ImageView cardPhoto, Label cardLabel){
+    private void initWindow(ProductGroup group, ImageView cardPhoto, Label cardLabel) throws IOException {
         this.cardPhoto = cardPhoto;
         this.cardLabel = cardLabel;
         this.group = group;
@@ -97,7 +100,7 @@ public class EditWindowController extends AnchorPane {
     }
 
     @FXML
-    public void saveChange(){
+    public void saveChange() throws IOException {
         if (imageField.getImage() == null || !nameField.validate()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
