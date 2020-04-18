@@ -41,6 +41,9 @@ public class MainController implements Initializable {
     private JFXComboBox<Product> chooseProduct;
 
     @FXML
+    private ScrollPane checkBoxPlate;
+
+    @FXML
     private JFXSlider chooseSlider;
 
     @FXML

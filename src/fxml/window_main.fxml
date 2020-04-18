@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXSlider?>
 <?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -22,6 +26,11 @@
 
 <JFXTabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="960.0" viewOrder="2.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controler.MainController">
    <tabs>
+      <Tab disable="true" text="Labawork">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        </content>
+      </Tab>
       <Tab text="Groups">
          <content>
             <SplitPane dividerPositions="0.3423799468654547" prefHeight="200.0" prefWidth="200.0">
@@ -70,75 +79,62 @@
             <SplitPane dividerPositions="0.3423799468654547" prefHeight="200.0" prefWidth="200.0">
                <items>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <bottom>
-                        <JFXButton BorderPane.alignment="CENTER" />
-                     </bottom>
                      <center>
                         <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Export panel" />
-                              <ScrollPane prefHeight="99.0" prefWidth="326.0" VBox.vgrow="ALWAYS">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Graphs" />
+                              <ScrollPane fx:id="checkBoxPlate" prefHeight="99.0" prefWidth="326.0" VBox.vgrow="ALWAYS">
                                  <content>
-                                    <VBox>
-                                       <children>
-                                          <JFXCheckBox />
-                                          <JFXCheckBox />
-                                          <JFXCheckBox />
-                                          <JFXCheckBox />
-                                          <JFXCheckBox />
-                                          <JFXCheckBox />
-                                       </children>
-                                    </VBox>
+                                    <VBox />
                                  </content>
                               </ScrollPane>
                            </children>
                         </VBox>
                      </center>
+                     <bottom>
+                        <JFXButton BorderPane.alignment="CENTER" />
+                     </bottom>
                   </BorderPane>
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
-                     <content>
-                        <VBox prefHeight="200.0" prefWidth="533.0">
+                  <VBox prefHeight="200.0" prefWidth="533.0">
+                     <children>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="263.00008824137535" minWidth="10.0" prefWidth="107.73057225016441" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="426.6172604825863" minWidth="10.0" prefWidth="426.6172604825863" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
                            <children>
-                              <GridPane>
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="263.00008824137535" minWidth="10.0" prefWidth="107.73057225016441" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="426.6172604825863" minWidth="10.0" prefWidth="426.6172604825863" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.rowIndex="1" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.rowIndex="2" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                 </children>
-                              </GridPane>
-                              <JFXComboBox editable="true" promptText="vxvxvxc" />
-                              <GridPane>
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="263.00008824137535" minWidth="10.0" prefWidth="107.73057225016441" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="426.6172604825863" minWidth="10.0" prefWidth="426.6172604825863" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.rowIndex="1" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                 </children>
-                              </GridPane>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Count of groups:" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Count of products:" GridPane.rowIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total cost:" GridPane.rowIndex="2" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                            </children>
-                        </VBox>
-                     </content>
-                  </ScrollPane>
+                        </GridPane>
+                        <ScrollPane fx:id="groupScrollPane1" hbarPolicy="NEVER" prefHeight="404.0" prefWidth="628.0" VBox.vgrow="ALWAYS">
+                           <content>
+                              <TilePane fx:id="groupTilePane1" prefHeight="251.0" prefWidth="628.0">
+                                 <children>
+                                    <BarChart prefHeight="251.0" prefWidth="311.0">
+                                      <xAxis>
+                                        <CategoryAxis side="BOTTOM" />
+                                      </xAxis>
+                                      <yAxis>
+                                        <NumberAxis side="LEFT" />
+                                      </yAxis>
+                                    </BarChart>
+                                    <PieChart prefHeight="251.0" prefWidth="311.0" />
+                                 </children>
+                              </TilePane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
                </items>
             </SplitPane>
          </content>
@@ -149,7 +145,7 @@
                <items>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <bottom>
-                        <JFXButton BorderPane.alignment="CENTER" />
+                        <JFXButton text="Write" BorderPane.alignment="CENTER" />
                      </bottom>
                      <center>
                         <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
