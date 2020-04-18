@@ -3,10 +3,7 @@ package controler;
 import com.google.gson.Gson;
 import com.google.gson.internal.$Gson$Preconditions;
 import com.google.gson.reflect.TypeToken;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXRadioButton;
-import com.jfoenix.controls.JFXSlider;
+import com.jfoenix.controls.*;
 import db.DBContext;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,17 +11,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.chart.*;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.TilePane;
 
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Product;
 import model.ProductGroup;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -35,19 +33,36 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
     @FXML
+    private Label countOfGroupLabel;
+
+    @FXML
+    private Label countOfProductsLabel;
+
+    @FXML
+    private Label totalCostLabel;
+
+    @FXML
+    private VBox vBoxAdaptive;
+
+    @FXML
+    private TilePane diagramTilePane;
+    @FXML
     private JFXComboBox<ProductGroup> chooseProductGroup;
 
     @FXML
     private JFXComboBox<Product> chooseProduct;
 
     @FXML
-    private ScrollPane checkBoxPlate;
+    private VBox checkBoxPlate;
 
     @FXML
     private JFXSlider chooseSlider;
 
     @FXML
     private JFXButton btn_addGroup;
+
+    @FXML
+    private JFXButton btn_createDiagram;
 
     @FXML
     private JFXRadioButton rb_alphabet;
@@ -82,8 +97,23 @@ public class MainController implements Initializable {
     @FXML
     private TableColumn<?, ?> costColumn;
 
+    @FXML
+    private CategoryAxis xAxis;
+
+    @FXML
+    private NumberAxis yAxis;
+
+    @FXML
+    private PieChart diagramCircle;
+    ArrayList<PieChart.Data> dataCircle = new ArrayList<PieChart.Data>();
+    @FXML
+    private BarChart<String, Number> diagramGistogram;
+    XYChart.Series<String, Number> dataSeries;
+    ArrayList<XYChart.Series<String,Number>> data = new ArrayList<XYChart.Series<String,Number>>();
+
     private DBContext dbContext;
     private ArrayList<CardController> cards = new ArrayList<CardController>();
+    private ArrayList<JFXCheckBox> checkBoxes = new ArrayList<JFXCheckBox>();
 
     private ObservableList<ProductGroup> listGroup = FXCollections.observableArrayList();
     private ObservableList<Product> listProduct = FXCollections.observableArrayList();
@@ -94,6 +124,8 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         groupScrollPane.widthProperty().addListener((observableValue, number, t1) -> groupTilePane.setPrefWidth(groupScrollPane.getWidth()));
+        vBoxAdaptive.widthProperty().addListener((observableValue, number, t1) -> diagramTilePane.setPrefWidth(vBoxAdaptive.getWidth()));
+
         ArrayList<ProductGroup> productGroups = new ArrayList<ProductGroup>();
         try {
             dbContext = new DBContext(new File("C:\\Users\\Lenovo\\IdeaProjects\\ProductFactory\\src\\db\\DB.json"));
@@ -120,6 +152,7 @@ public class MainController implements Initializable {
         System.out.println(productGroups);
 
         chooseProductGroup.setItems(listGroup);
+        initCheckBoxPlate();
     }
 
     private void test() throws IOException {
@@ -159,15 +192,45 @@ public class MainController implements Initializable {
         window.setTitle("Add new group:");
         window.setScene(scene);
         window.show();
+        window.setOnHidden(windowEvent -> initCheckBoxPlate());
     }
 
+    private void initCheckBoxPlate(){
+        setStatistic();
 
-    public void addCardsGroupToCanvas(){
+        for(JFXCheckBox box : checkBoxes){
+            checkBoxPlate.getChildren().remove(box);
+        }
+
+        checkBoxes = new ArrayList<JFXCheckBox>();
+        for(CardController card:cards){
+            JFXCheckBox box = new JFXCheckBox();
+            box.setText(card.getName());
+            checkBoxes.add(box);
+            checkBoxPlate.getChildren().add(box);
+        }
+    }
+    private void setStatistic(){
+        countOfGroupLabel.setText(""+cards.size());
+
+        int cost = 0;
+        int countProducts = 0;
+        for(CardController card : cards){
+            countProducts+=card.getCountProducts();
+            cost += card.getPrice();
+        }
+        totalCostLabel.setText(cost+"");
+        countOfProductsLabel.setText(countProducts+"");
+
+
+
+    }
+    private void addCardsGroupToCanvas(){
         for(CardController card:cards)
             groupTilePane.getChildren().add(card);
     }
 
-    public void removeAllCardsFromCanvas(){
+    private void removeAllCardsFromCanvas(){
         for(CardController card : cards){
             groupTilePane.getChildren().remove(card);
         }
@@ -221,5 +284,52 @@ public class MainController implements Initializable {
         chooseSlider.setMin(1);
         chooseSlider.setMax(currentProduct.getQuantity());
         chooseSlider.setValue(1);
+    }
+
+    @FXML
+    public void createDiagram(){
+        ArrayList<CardController> show = new ArrayList<CardController>();
+
+        for(JFXCheckBox box: checkBoxes){
+            if(!box.isSelected())
+                continue;
+
+            String boxName = box.getText();
+            for(CardController card:cards){
+                if(boxName.equals(card.getName()))
+                    show.add(card);
+            }
+        }
+
+        createGistogram(show);
+        createDiagramCircle(show);
+    }
+
+    private void createDiagramCircle(ArrayList<CardController> show){
+        for(PieChart.Data data: dataCircle)
+            diagramCircle.getData().remove(data);
+
+        dataCircle = new ArrayList<PieChart.Data>();
+
+        for(CardController card:show){
+            PieChart.Data slice = new PieChart.Data(card.getName(),card.getCountProducts());
+            dataCircle.add(slice);
+            diagramCircle.getData().add(slice);
+        }
+    }
+    private void createGistogram(ArrayList<CardController> show){
+
+        for(XYChart.Series<String,Number> dat : data)
+            diagramGistogram.getData().remove(dat);
+
+        data = new ArrayList<XYChart.Series<String,Number>>();
+
+        for(CardController card:show){
+            dataSeries = new XYChart.Series<String,Number>();
+            dataSeries.setName(card.getName());
+            dataSeries.getData().add(new XYChart.Data<String, Number>("",card.getPrice()));
+            data.add(dataSeries);
+            diagramGistogram.getData().add(dataSeries);
+        }
     }
 }

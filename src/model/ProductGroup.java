@@ -97,12 +97,18 @@ public class ProductGroup {
         double price = 0;
 
         for (Product product:products){
-            price+= product.getPrice();
+            price+= product.getPrice()*product.getQuantity();
         }
 
         return price;
     }
-    public int getCountProducts(){return products.size();}
+    public int getCountProducts(){
+        int count = 0;
+        for(Product product:products){
+            count+=product.getQuantity();
+        }
+        return count;
+    }
 
     public String toString(){return name;}
 }
