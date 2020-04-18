@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -18,6 +19,8 @@ import javafx.stage.Stage;
 import model.Product;
 import model.ProductGroup;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 /**@author Stanislav Bohuta, Kozyr Vladislav, Izvostkin Danylo
@@ -61,13 +64,13 @@ public class EditWindowController extends AnchorPane {
      * @param cardPhoto
      * @param  cardLabel
      * constructor*/
-    public EditWindowController(ProductGroup group, ImageView cardPhoto, Label cardLabel){
+    public EditWindowController(ProductGroup group, ImageView cardPhoto, Label cardLabel) {
         loadFXml();
-        initWindow(group,cardPhoto,cardLabel);
+        initWindow(group, cardPhoto, cardLabel);
     }
 
     /**Load FXml file*/
-    private void loadFXml(){
+    private void loadFXml() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
                 "../fxml/window_edit_group.fxml"));
         fxmlLoader.setRoot(this);
@@ -81,14 +84,13 @@ public class EditWindowController extends AnchorPane {
     }
 
     /**Initialization window*/
-    private void initWindow(ProductGroup group, ImageView cardPhoto, Label cardLabel){
+    private void initWindow(ProductGroup group, ImageView cardPhoto, Label cardLabel) {
         this.cardPhoto = cardPhoto;
         this.cardLabel = cardLabel;
         this.group = group;
         nameField.setText(group.getName());
         descriptionField.setText(group.getDescription());
         imageField.setImage(group.getGroupIcon());
-
         setValidation(nameField);
     }
 
@@ -118,7 +120,7 @@ public class EditWindowController extends AnchorPane {
 
     /**Method for save change on press button*/
     @FXML
-    public void saveChange(){
+    public void saveChange() {
         if (imageField.getImage() == null || !nameField.validate()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -131,11 +133,13 @@ public class EditWindowController extends AnchorPane {
         group.setName(nameField.getText());
         group.setDescription(descriptionField.getText());
 
+        cardPhoto.setImage(group.getGroupIcon());
+        cardLabel.setText(group.getName());
+
         //частина коду для закриття вікна
         Stage stage = (Stage) btn_save.getScene().getWindow();
         stage.close();
 
-        cardPhoto.setImage(group.getGroupIcon());
-        cardLabel.setText(group.getName());
+
     }
 }

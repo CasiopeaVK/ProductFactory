@@ -31,7 +31,7 @@
                         <JFXButton BorderPane.alignment="CENTER" />
                      </top>
                      <bottom>
-                        <JFXButton fx:id="btn_addGroup" onAction="#addGroup" text="Add new group" BorderPane.alignment="CENTER" />
+                        <JFXButton fx:id="btn_addGroup" onAction="#addNewGroup" text="Add new group" BorderPane.alignment="CENTER" />
                      </bottom>
                      <center>
                         <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
@@ -41,13 +41,13 @@
                                  <content>
                                     <VBox>
                                        <children>
-                                          <JFXRadioButton fx:id="rb_alphabet" text="Alphabet">
+                                          <JFXRadioButton fx:id="rb_alphabet" onAction="#sortCardByAlphabet" text="Alphabet">
                                              <toggleGroup>
                                                 <ToggleGroup fx:id="group" />
                                              </toggleGroup>
                                           </JFXRadioButton>
-                                          <JFXRadioButton fx:id="rb_cost" text="Cost" toggleGroup="$group" />
-                                          <JFXRadioButton fx:id="rb_count" text="Count" toggleGroup="$group" />
+                                          <JFXRadioButton fx:id="rb_cost" onAction="#sortCardByCost" text="Cost" toggleGroup="$group" />
+                                          <JFXRadioButton fx:id="rb_count" onAction="#sortByCountProducts" text="Count" toggleGroup="$group" />
                                        </children>
                                     </VBox>
                                  </content>
@@ -155,10 +155,10 @@
                         <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Choose group" />
-                              <JFXComboBox />
+                              <JFXComboBox fx:id="chooseProductGroup" onAction="#chooseProductGroupListener" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Choose group" />
-                              <JFXComboBox />
-                              <JFXSlider />
+                              <JFXComboBox fx:id="chooseProduct" onAction="#chooseProductListener" />
+                              <JFXSlider fx:id="chooseSlider" />
                            </children>
                         </VBox>
                      </center>

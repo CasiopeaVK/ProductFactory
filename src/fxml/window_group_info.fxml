@@ -12,17 +12,17 @@
    <items>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <bottom>
-            <JFXButton fx:id="btn_confirm" text="Confirm" BorderPane.alignment="CENTER" />
+            <JFXButton fx:id="btn_confirm" onAction="#showGroup" text="Confirm" BorderPane.alignment="CENTER" />
          </bottom>
          <top>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
                   <JFXTextField />
-                  <JFXTextField promptText="Enter name" />
-                  <JFXTextField promptText="Enter quantity" />
-                  <JFXTextField promptText="Enter price" />
-                  <JFXButton text="Add" />
-                  <JFXButton text="Remove" />
+                  <JFXTextField fx:id="nameField" promptText="Enter name" />
+                  <JFXTextField fx:id="quantityField" promptText="Enter quantity" />
+                  <JFXTextField fx:id="priceField" promptText="Enter price" />
+                  <JFXButton fx:id="btn_addProduct" onAction="#addProduct" text="Add" />
+                  <JFXButton onAction="#deleteProducts" text="Remove" />
                </children>
             </VBox>
          </top>
@@ -30,7 +30,7 @@
       <VBox>
          <children>
             <JFXTextField fx:id="searchField" />
-            <TableView fx:id="tableView" prefHeight="375.0" prefWidth="400.0">
+            <TableView fx:id="tableView">
               <columns>
                 <TableColumn fx:id="col_Id" prefWidth="75.0" text="ID" />
                 <TableColumn fx:id="col_Name" prefWidth="75.0" text="Name" />
