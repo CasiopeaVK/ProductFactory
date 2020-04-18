@@ -13,7 +13,7 @@
             <Image url="file:\C:\Users\Lenovo\IdeaProjects\ProductFactory\src\grecha.jpg" />
          </image>
       </ImageView>
-      <JFXButton fx:id="btn_info" layoutX="17.0" layoutY="161.0" text="Info" />
+      <JFXButton fx:id="btn_info" layoutX="17.0" layoutY="161.0" onAction="#openInfoWindow" text="Info" />
       <JFXButton fx:id="btn_refactor" layoutX="125.0" layoutY="161.0" text="Refactor" />
       <Label fx:id="cardLabel" layoutX="86.0" layoutY="135.0" text="Label" />
    </children>

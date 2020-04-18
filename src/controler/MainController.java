@@ -60,7 +60,7 @@ public class MainController implements Initializable {
 
     }
 
-
+    @FXML
     public void addGroup(ActionEvent actionEvent) {
         AddNewGroupController groupController = new AddNewGroupController(groupTilePane);
         Scene scene = new Scene(groupController, 400, 300);

@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Созданая карта появляется на экране">
+      <change afterPath="$PROJECT_DIR$/src/controler/GroupInfoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/AddNewGroupController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/AddNewGroupController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/AddNewGroupController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/AddNewGroupController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/CardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/CardController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controler/AddNewGroupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controler/AddNewGroupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/fxml/window_group_info.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/fxml/window_group_info.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controler/CardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controler/CardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controler/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controler/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fxml/card.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxml/card.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fxml/window_group_info.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxml/window_group_info.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ProductGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ProductGroup.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,7 +232,9 @@
       <workItem from="1587146949685" duration="1649000" />
       <workItem from="1587149021926" duration="323000" />
       <workItem from="1587154078100" duration="4379000" />
-      <workItem from="1587159185209" duration="315000" />
+      <workItem from="1587159185209" duration="413000" />
+      <workItem from="1587196306007" duration="55000" />
+      <workItem from="1587200429331" duration="4761000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1587141825477</created>
@@ -337,18 +341,11 @@
     <state x="618" y="302" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1587156984543">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    HEAD
-    <state x="618" y="302" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1536.824@0.0.1536.824" timestamp="1587144041685" />
-    <state x="376" y="8" width="878" height="811" key="CommitChangelistDialog2" timestamp="1587156529861">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="376" y="8" width="878" height="811" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1587156529861" />
     <state x="618" y="302" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1536.824@0.0.1536.824" timestamp="1587156984543" />
-    <state x="376" y="8" width="878" height="811" key="CommitChangelistDialog2" timestamp="1587146824113">
+    <state x="376" y="8" width="878" height="811" key="CommitChangelistDialog2" timestamp="1587204749551">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="376" y="8" width="878" height="811" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1587146824113" />
-    5fea0fb786717d484be103d02331d317e79a3493
+    <state x="376" y="8" width="878" height="811" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1587204749551" />
     <state x="473" y="153" key="FileChooserDialogImpl" timestamp="1587141497552">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -357,43 +354,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="603" y="328" width="354" height="168" key="Github.CreateGistDialog/0.0.1536.824@0.0.1536.824" timestamp="1587141648885" />
-    HEAD
-    <state width="1493" height="231" key="GridCell.Tab.0.bottom" timestamp="1587158809996" />
-    HEAD
-    <state width="1493" height="165" key="GridCell.Tab.0.bottom" timestamp="1587158678886">
+    <state width="1493" height="61" key="GridCell.Tab.0.bottom" timestamp="1587205200384">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="165" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587158678886" />
-    <state width="1493" height="165" key="GridCell.Tab.0.center" timestamp="1587158678886">
+    <state width="1493" height="61" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587205200384" />
+    <state width="1493" height="61" key="GridCell.Tab.0.center" timestamp="1587205200384">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="165" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587158678886" />
-    <state width="1493" height="165" key="GridCell.Tab.0.left" timestamp="1587158678886">
+    <state width="1493" height="61" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587205200384" />
+    <state width="1493" height="61" key="GridCell.Tab.0.left" timestamp="1587205200383">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="165" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587158678886" />
-    <state width="1493" height="165" key="GridCell.Tab.0.right" timestamp="1587158678886">
+    <state width="1493" height="61" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587205200383" />
+    <state width="1493" height="61" key="GridCell.Tab.0.right" timestamp="1587205200384">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="165" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587158678886" />
-    <state x="249" y="0" key="SettingsEditor" timestamp="1587149305558" />
-    <state width="1493" height="161" key="GridCell.Tab.0.bottom" timestamp="1587148697645">
-      7e5a61ebd61e941e8d85c13a991fe636b2a14318
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="231" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587158809996" />
-    <state width="1493" height="231" key="GridCell.Tab.0.center" timestamp="1587158809996">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="231" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587158809996" />
-    <state width="1493" height="231" key="GridCell.Tab.0.left" timestamp="1587158809996">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="231" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587158809996" />
-    <state width="1493" height="231" key="GridCell.Tab.0.right" timestamp="1587158809996">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="231" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587158809996" />
+    <state width="1493" height="61" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587205200384" />
     <state x="147" y="65" key="MergeDialog" timestamp="1587156991922">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -402,11 +378,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="481" y="128" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1587156992487" />
-    <state x="249" y="0" key="SettingsEditor" timestamp="1587142800790">
-      5fea0fb786717d484be103d02331d317e79a3493
+    <state x="249" y="0" key="SettingsEditor" timestamp="1587203852698">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1587142800790" />
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1587203852698" />
     <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587156988091">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -415,16 +390,5 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="583" y="276" key="git4idea.rebase.GitRebaseDialog/0.0.1536.824@0.0.1536.824" timestamp="1587141712706" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/controler/AddNewGroupController.java</url>
-          <line>69</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
