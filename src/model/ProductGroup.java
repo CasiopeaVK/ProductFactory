@@ -1,14 +1,16 @@
 package model;
 
+import com.google.gson.annotations.Expose;
 import db.DBContext;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.WritableRaster;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.awt.image.*;
+import java.io.*;
+import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Base64;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
@@ -18,23 +20,42 @@ import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
 
 public class ProductGroup {
-    private File groupIcon;
+    @Expose
+    private byte[] imageCode;
+    @Expose
     private String name;
+    @Expose
     private String description;
+    @Expose
     private ArrayList<Product> products = new ArrayList<Product>();
 
-    public ProductGroup(File groupIcon, String name, String description) {
-        this.groupIcon = groupIcon;
+    private transient Image groupImage;
+
+    public ProductGroup(Image image, String name, String description) {
+        this.groupImage = image;
         this.name = name;
         this.description = description;
+        setImageCode(image);
+    }
+
+    private void setImageCode(Image image) {
+        try {
+            BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
+            ByteArrayOutputStream s = new ByteArrayOutputStream();
+            ImageIO.write(bufferedImage, "jpg", s);
+            this.imageCode = s.toByteArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public String getName() {
         return name;
     }
 
-    public Image getGroupIcon() throws IOException {
-        return new Image(this.groupIcon.toURI().toString());
+    public Image getGroupIcon() {
+        return this.groupImage;
     }
 
     public String getDescription() {
@@ -42,7 +63,17 @@ public class ProductGroup {
     }
 
     public void setGroupIcon(Image image) {
-        this.groupIcon = new File(image.getUrl());
+        this.groupImage = image;
+        setImageCode(image);
+    }
+
+    public void updateImage() {
+        try {
+            BufferedImage image = ImageIO.read(new ByteArrayInputStream(this.imageCode));
+            this.groupImage = SwingFXUtils.toFXImage(image, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setName(String name) {

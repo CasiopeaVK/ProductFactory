@@ -77,7 +77,7 @@ public class AddNewGroupController extends AnchorPane {
             return;
         }
 
-        ProductGroup productGroup = new ProductGroup(new File(image.getUrl()), nameField.getText(), descriptionField.getText());
+        ProductGroup productGroup = new ProductGroup(image, nameField.getText(), descriptionField.getText());
         CardController cardController = new CardController(productGroup);
         groupPane.getChildren().add(cardController);
 

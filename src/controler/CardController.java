@@ -37,8 +37,8 @@ public class CardController extends Pane {
 
     private ProductGroup group;
 
-    public CardController(Image groupIcon, String name, String description) throws IOException {
-        group = new ProductGroup(new File(groupIcon.getUrl()),name,description);
+    public CardController(Image image, String name, String description) throws IOException {
+        group = new ProductGroup(image, name, description);
         setStartConfig();
     }
 
@@ -73,10 +73,10 @@ public class CardController extends Pane {
         window.setScene(scene);
         window.show();
     }
-    @FXML
-    void showEditWindow() throws IOException {
-        EditWindowController editWindowController = new EditWindowController(group, imgGroup, cardLabel);
 
+    @FXML
+    void showEditWindow()  {
+        EditWindowController editWindowController = new EditWindowController(group, imgGroup, cardLabel);
         Scene scene = new Scene(editWindowController);
         Stage stage = new Stage();
         stage.setScene(scene);

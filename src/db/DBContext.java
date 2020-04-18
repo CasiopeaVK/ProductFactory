@@ -14,12 +14,22 @@ public class DBContext {
 
     public DBContext(File mainContext) throws FileNotFoundException {
         this.mainContext = mainContext;
+        try {
+            this.productGroups = getProductGroups();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
-    private void writeDbFiles() throws IOException {
+    private void writeDbFile() throws IOException {
         FileWriter fileWriter = new FileWriter(this.mainContext);
         fileWriter.write(new Gson().toJson(productGroups));
         fileWriter.close();
+    }
+
+    public ArrayList<ProductGroup> getLoadedProductGroups(){
+        return this.productGroups;
     }
 
     public ArrayList<ProductGroup> getProductGroups() throws IOException {

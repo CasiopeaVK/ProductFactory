@@ -13,13 +13,16 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.layout.TilePane;
 
 import javafx.stage.Stage;
+import model.Product;
 import model.ProductGroup;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -78,12 +81,37 @@ public class MainController implements Initializable {
         }
 
         for (ProductGroup productGroup : productGroups) {
+            productGroup.updateImage();
             try {
                 addGroupToCanvas(productGroup);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+        try {
+            test();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(productGroups);
+    }
+
+    private void test() throws IOException {
+        File file = new File("C:\\Users\\vladk\\IdeaProjects\\ExcelTest\\src\\grecha.jpg");
+        Image image = new Image("grecha.jpg");
+        ArrayList<ProductGroup> groups = new ArrayList<ProductGroup>();
+        for (int i = 0; i < 20; i++) {
+            ProductGroup productGroup = new ProductGroup(image, "EKE" + i, "norm");
+            for (int j = 0; j < 20; j++) {
+                Product product = new Product("Name - " + j, 10, 69.9, true);
+                productGroup.addProduct(product);
+            }
+            groups.add(productGroup);
+        }
+        FileWriter fileWriter = new FileWriter("DB.json");
+        fileWriter.write(new Gson().toJson(groups, new TypeToken<ArrayList<Product>>() {
+        }.getType()));
+        fileWriter.close();
     }
 
     private void addGroupToCanvas(ProductGroup group) throws IOException {
