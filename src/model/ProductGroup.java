@@ -38,6 +38,11 @@ public class ProductGroup {
     public File getSourceFile() {
         return this.sourceFile;
     }
+    public String getDescription(){return this.description;}
+
+    public void setGroupIcon(Image image){this.groupIcon = image;}
+    public void setName(String name){this.name = name;}
+    public void setDescription(String description){this.description = description;}
 
     public void setSourceFile(File file) {
         this.sourceFile = sourceFile;
