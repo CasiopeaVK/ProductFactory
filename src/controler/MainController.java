@@ -32,6 +32,11 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
+    @FXML
+    private Tab statisticWindow;
+
+    @FXML
+    private Tab writeWindow;
 
     @FXML
     private Label countOfGroupLabel;
@@ -126,6 +131,7 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         groupScrollPane.widthProperty().addListener((observableValue, number, t1) -> groupTilePane.setPrefWidth(groupScrollPane.getWidth()));
         vBoxAdaptive.widthProperty().addListener((observableValue, number, t1) -> diagramTilePane.setPrefWidth(vBoxAdaptive.getWidth()));
+        initSlider();
 
         ArrayList<ProductGroup> productGroups = new ArrayList<ProductGroup>();
         try {
@@ -185,14 +191,7 @@ public class MainController implements Initializable {
 
     }
 
-    @FXML
-    public void addComboBoxGroup(){
 
-        listGroup = FXCollections.observableArrayList();
-        for(CardController card : cards)
-            listGroup.add(card.getGroup());
-        chooseProductGroup.setItems(listGroup);
-    }
     @FXML
     public void addNewGroup(ActionEvent actionEvent) {
         AddNewGroupController groupController = new AddNewGroupController(groupTilePane,cards);
@@ -278,25 +277,55 @@ public class MainController implements Initializable {
 
     @FXML
     public void chooseProductGroupListener(){
+        if(chooseProductGroup.getValue() == null)
+            return;
+
         currentGroup = chooseProductGroup.getValue();
         ArrayList<Product> products = currentGroup.getProduct();
         listProduct =FXCollections.observableArrayList();
         for(Product product:products){
             listProduct.add(product);
         }
+        chooseProduct.getItems().clear();
         chooseProduct.setItems(listProduct);
     }
 
     @FXML
+    public void addComboBoxGroup(){
+        if(!writeWindow.isSelected())
+            return;
+
+        chooseProductGroup.getItems().clear();
+        chooseProduct.getItems().clear();
+        listGroup = FXCollections.observableArrayList();
+        for(CardController card : cards)
+            listGroup.add(card.getGroup());
+        chooseProductGroup.setItems(listGroup);
+    }
+
+    @FXML
     public void chooseProductListener(){
+        if(chooseProduct.getValue() == null){
+            initSlider();
+            return;
+        }
+
         currentProduct = chooseProduct.getValue();
         chooseSlider.setMin(1);
         chooseSlider.setMax(currentProduct.getQuantity());
         chooseSlider.setValue(1);
     }
 
+    private void initSlider(){
+        chooseSlider.setMin(0);
+        chooseSlider.setMax(0);
+        chooseSlider.setValue(0);
+    }
     @FXML
     public void createDiagram(){
+        if(!statisticWindow.isSelected())
+            return;
+
         ArrayList<CardController> show = new ArrayList<CardController>();
 
         for(JFXCheckBox box: checkBoxes){
