@@ -30,7 +30,7 @@
       <VBox>
          <children>
             <JFXTextField fx:id="searchField" />
-            <TableView fx:id="tableView" prefHeight="375.0" prefWidth="400.0">
+            <TableView fx:id="tableView">
               <columns>
                 <TableColumn fx:id="col_Id" prefWidth="75.0" text="ID" />
                 <TableColumn fx:id="col_Name" prefWidth="75.0" text="Name" />

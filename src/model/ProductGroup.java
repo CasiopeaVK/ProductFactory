@@ -50,6 +50,7 @@ public class ProductGroup {
 
     }
 
+    public ArrayList<Product> getProduct(){return products;}
     public String getName() {
         return name;
     }
@@ -91,4 +92,23 @@ public class ProductGroup {
     public void addProduct(Product product) {
         this.products.add(product);
     }
+
+    public Double getPrice(){
+        double price = 0;
+
+        for (Product product:products){
+            price+= product.getPrice()*product.getQuantity();
+        }
+
+        return price;
+    }
+    public int getCountProducts(){
+        int count = 0;
+        for(Product product:products){
+            count+=product.getQuantity();
+        }
+        return count;
+    }
+
+    public String toString(){return name;}
 }

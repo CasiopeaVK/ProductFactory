@@ -20,6 +20,7 @@ import model.ProductGroup;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class AddNewGroupController extends AnchorPane {
     @FXML
@@ -42,9 +43,11 @@ public class AddNewGroupController extends AnchorPane {
 
     private Image image;
     private TilePane groupPane;
+    private ArrayList<CardController> cards;
 
-    public AddNewGroupController(TilePane groupPane) {
+    public AddNewGroupController(TilePane groupPane, ArrayList<CardController> cards) {
         this.groupPane = groupPane;
+        this.cards = cards;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../fxml/window_add_new_group.fxml"));
         fxmlLoader.setRoot(this);
@@ -69,6 +72,23 @@ public class AddNewGroupController extends AnchorPane {
 
     @FXML
     public void saveGroup() throws IOException {
+        boolean uniqueName = true;
+        for(CardController card : cards){
+            if(nameField.getText().equals(card.getName())){
+                uniqueName = false;
+                break;
+            }
+
+        }
+
+        if (!uniqueName) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Not unique name!");
+            alert.showAndWait();
+            return;
+        }
+
         if (imageView.getImage() == null || !nameField.validate()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -78,9 +98,9 @@ public class AddNewGroupController extends AnchorPane {
         }
 
         ProductGroup productGroup = new ProductGroup(image, nameField.getText(), descriptionField.getText());
-        CardController cardController = new CardController(productGroup);
+        CardController cardController = new CardController(productGroup, cards);
         groupPane.getChildren().add(cardController);
-
+        cards.add(cardController);
         //TODO add to DB
         //частина коду для закриття вікна
         Stage stage = (Stage) btn_confirm.getScene().getWindow();

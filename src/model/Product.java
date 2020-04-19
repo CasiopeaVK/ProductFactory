@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Date;
+import java.util.stream.IntStream;
 
 public class Product {
     private Integer ID;
@@ -19,6 +20,7 @@ public class Product {
         this.availability = availability;
         this.ID = 0;
     }
+
 
     public String getName() {
         return name;
@@ -62,12 +64,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "ID=" + ID +
-                ", name='" + name + '\'' +
-                ", quantity=" + quantity +
-                ", price=" + price +
-                ", availability=" + availability +
-                '}';
+        return name;
     }
 }
