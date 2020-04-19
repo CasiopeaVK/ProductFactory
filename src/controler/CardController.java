@@ -48,15 +48,18 @@ public class CardController extends Pane {
 
     private ProductGroup group;
     private ArrayList<CardController> cards;
+    private ArrayList<Product> products;
 
     public CardController(Image image, String name, String description) throws IOException {
         group = new ProductGroup(image, name, description);
         setStartConfig();
     }
 
-    public CardController(ProductGroup group, ArrayList<CardController> cards) throws IOException {
+    public CardController(ProductGroup group, ArrayList<CardController> cards, ArrayList<Product> products) throws IOException {
         this.group = group;
         this.cards = cards;
+        this.products = products;
+
         setStartConfig();
     }
 
@@ -79,7 +82,7 @@ public class CardController extends Pane {
 
     @FXML
     void openInfoWindow(ActionEvent event) {
-        GroupInfoController groupInfoController = new GroupInfoController(group);
+        GroupInfoController groupInfoController = new GroupInfoController(group,products);
         Scene scene = new Scene(groupInfoController, 400, 300);
         Stage window = new Stage();
         window.setTitle("Info group:");

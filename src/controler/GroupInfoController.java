@@ -72,8 +72,10 @@ public class GroupInfoController extends SplitPane {
     private JFXButton btn_addProduct;
 
     private ProductGroup productGroup;
+    private ArrayList<Product> allProducts;
+    public GroupInfoController(ProductGroup group, ArrayList<Product> products) {
+        this.allProducts = products;
 
-    public GroupInfoController(ProductGroup group) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../fxml/window_group_info.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

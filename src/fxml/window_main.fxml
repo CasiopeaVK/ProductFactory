@@ -73,7 +73,7 @@
             </SplitPane>
          </content>
       </Tab>
-      <Tab onSelectionChanged="#initCheckBoxPlate" text="Statistic">
+      <Tab fx:id="statisticWindow" onSelectionChanged="#initCheckBoxPlate" text="Statistic">
          <content>
             <SplitPane dividerPositions="0.3423799468654547" prefHeight="200.0" prefWidth="200.0">
                <items>
@@ -138,7 +138,7 @@
             </SplitPane>
          </content>
       </Tab>
-      <Tab onSelectionChanged="#addComboBoxGroup" text="Write off">
+      <Tab fx:id="writeWindow" onSelectionChanged="#addComboBoxGroup" text="Write off">
          <content>
             <SplitPane dividerPositions="0.39979123173277664" prefHeight="200.0" prefWidth="200.0">
                <items>
