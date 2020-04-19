@@ -13,8 +13,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -142,11 +140,11 @@
       </Tab>
       <Tab onSelectionChanged="#addComboBoxGroup" text="Write off">
          <content>
-            <SplitPane dividerPositions="0.5" prefHeight="200.0" prefWidth="200.0">
+            <SplitPane dividerPositions="0.39979123173277664" prefHeight="200.0" prefWidth="200.0">
                <items>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <bottom>
-                        <JFXButton text="Write" BorderPane.alignment="CENTER" />
+                        <JFXButton fx:id="btn_writeOff" onAction="#writeOffProducts" text="Write off products" BorderPane.alignment="CENTER" />
                      </bottom>
                      <center>
                         <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
@@ -160,17 +158,14 @@
                         </VBox>
                      </center>
                   </BorderPane>
-                  <TableView fx:id="writeOffTable" prefHeight="200.0" prefWidth="200.0">
-                    <columns>
-                      <TableColumn fx:id="dataColumn" prefWidth="75.0" text="Data" />
-                      <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
-                        <TableColumn fx:id="countColumn" prefWidth="75.0" text="Count" />
-                        <TableColumn fx:id="costColumn" prefWidth="75.0" text="Cost" />
-                    </columns>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                  </TableView>
+                  <GridPane fx:id="tableCell">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
                </items>
             </SplitPane>
          </content>

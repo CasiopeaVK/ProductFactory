@@ -25,55 +25,79 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**@author Stanislav Bohuta, Kozyr Vladislav, Izvostkin Danylo
- * Class for show edit window*/
+/**
+ * @author Stanislav Bohuta, Kozyr Vladislav, Izvostkin Danylo
+ * Class for show edit window
+ */
 public class EditWindowController extends AnchorPane {
 
-    /**Card name field*/
+    /**
+     * Card name field
+     */
     @FXML
     private JFXTextField nameField;
 
-    /**Card description field*/
+    /**
+     * Card description field
+     */
     @FXML
     private JFXTextArea descriptionField;
 
-    /**Button to change photo*/
+    /**
+     * Button to change photo
+     */
     @FXML
     private JFXButton btn_change;
 
-    /**Button to delete group*/
+    /**
+     * Button to delete group
+     */
     @FXML
     private JFXButton btn_delete;
 
-    /**Button for save changes*/
+    /**
+     * Button for save changes
+     */
     @FXML
     private JFXButton btn_save;
 
-    /**Card image*/
+    /**
+     * Card image
+     */
     @FXML
     private ImageView imageField;
 
-    /**Object of group product*/
+    /**
+     * Object of group product
+     */
     private ProductGroup group;
 
-    /**Object of card photo*/
+    /**
+     * Object of card photo
+     */
     private ImageView cardPhoto;
 
-    /**Object of label card*/
+    /**
+     * Object of label card
+     */
     private Label cardLabel;
 
     private ArrayList<CardController> cards;
-    /**@param group
+
+    /**
+     * @param group
      * @param cardPhoto
-     * @param  cardLabel
-     * constructor*/
+     * @param cardLabel constructor
+     */
     public EditWindowController(ProductGroup group, ImageView cardPhoto, Label cardLabel, ArrayList<CardController> cards) {
         this.cards = cards;
         loadFXml();
         initWindow(group, cardPhoto, cardLabel);
     }
 
-    /**Load FXml file*/
+    /**
+     * Load FXml file
+     */
     private void loadFXml() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
                 "../fxml/window_edit_group.fxml"));
@@ -87,7 +111,9 @@ public class EditWindowController extends AnchorPane {
         }
     }
 
-    /**Initialization window*/
+    /**
+     * Initialization window
+     */
     private void initWindow(ProductGroup group, ImageView cardPhoto, Label cardLabel) {
         this.cardPhoto = cardPhoto;
         this.cardLabel = cardLabel;
@@ -98,7 +124,9 @@ public class EditWindowController extends AnchorPane {
         setValidation(nameField);
     }
 
-    /**Create validation for textField*/
+    /**
+     * Create validation for textField
+     */
     public void setValidation(JFXTextField textField) {
         RequiredFieldValidator validator = new RequiredFieldValidator();
         textField.getValidators().add(validator);
@@ -113,7 +141,9 @@ public class EditWindowController extends AnchorPane {
         });
     }
 
-    /**Method for choose photo on press button*/
+    /**
+     * Method for choose photo on press button
+     */
     @FXML
     public void choosePhoto() {
         final FileChooser fileChooser = new FileChooser();
@@ -122,17 +152,22 @@ public class EditWindowController extends AnchorPane {
         imageField.setImage(new Image(file.toURI().toString()));
     }
 
-    /**Method for save change on press button*/
+    /**
+     * Method for save change on press button
+     */
     @FXML
     public void saveChange() {
 
         boolean uniqueName = true;
-        for(CardController card : cards){
-            if(nameField.getText().equals(card.getName())){
-                uniqueName = false;
-                break;
+        if (cardLabel.getText().equals(nameField.getText())) {
+            uniqueName = true;
+        } else {
+            for (CardController card : cards) {
+                if (nameField.getText().equals(card.getName())) {
+                    uniqueName = false;
+                    break;
+                }
             }
-
         }
 
         if (!uniqueName) {

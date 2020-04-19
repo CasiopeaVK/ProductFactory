@@ -86,6 +86,7 @@ public class GroupInfoController extends SplitPane {
         this.productGroup = group;
         initializeTable(group);
         setValidation();
+
     }
 
     @FXML
@@ -194,7 +195,7 @@ public class GroupInfoController extends SplitPane {
         return FXCollections.observableList(group.getProducts());
     }
 
-    private void initializeColumn() {
+    private void  initializeColumn() {
         col_Id.setCellValueFactory(new PropertyValueFactory<Product, Integer>("ID"));
         col_Name.setCellValueFactory(new PropertyValueFactory<Product, String>("Name"));
         col_Quantity.setCellValueFactory(new PropertyValueFactory<Product, Integer>("Quantity"));
