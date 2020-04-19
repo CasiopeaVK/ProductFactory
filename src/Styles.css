@@ -144,7 +144,11 @@
 }
 .text-info-header{
     -fx-font-weight: bold;
+}
 
+.chart-legend{
+    -fx-text-fill: #fff;
+    -fx-background-color: #fff;
 }
 
 .header_menu_text{
@@ -180,34 +184,32 @@
 
 /*TableView Default*/
 .table-view{
-    -fx-background-color: derive(-fx-primary, 10%);
-    -fx-font-size: 16px;
-    -fx-border-color: derive(-fx-secondary, -60%);
+    -fx-background-color: -fx-background;
+    -fx-font-size: 15px;
 }
 .table-view:focused{
-    -fx-background-color: derive(-fx-primary, 20%);
+    -fx-background-color: derive(-fx-background, 3%);
 }
 .table-row-cell {
-    -fx-cell-size: 40px;
+    -fx-cell-size: 30px;
 }
 .table-view .column-header-background{
     -fx-background-color: -fx-primary;
 }
 .table-view .column-header-background .label{
-    -fx-background-color: transparent;
-    -fx-text-fill: white;
+    -fx-text-fill: -fx-background;
 }
 .table-view .column-header {
     -fx-background-color: transparent;
 }
 .table-view .table-cell{
-    -fx-text-fill: white;
+    -fx-text-fill: -fx-primarytext;
 }
 .table-row-cell:focused, .table-cell:focused{
     -fx-text-fill: -fx-primary;
 }
 .table-row-cell{
-    -fx-background-color: -fx-primary;
+    -fx-background-color: -fx-background;
     -fx-border-color: transparent;
     -fx-table-cell-border-color: transparent;
 }
@@ -215,18 +217,18 @@
     -fx-alignment: CENTER;
 }
 .table-row-cell:even{
-    -fx-background-color: derive(-fx-primary, 10%);
+    -fx-background-color: #101010;
 }
 .table-row-cell:selected {
-    -fx-background-color: -fx-secondary;
-    -fx-text-fill: -fx-primary;
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: -fx-primarytext;
     -fx-background-insets: 0;
 }
 .table-row-cell:selected .table-cell{
-    -fx-text-fill: -fx-primary;
+    -fx-text-fill: -fx-primarytext;
 }
 .placeholder .label{
-    -fx-text-fill: white;
+    -fx-text-fill: -fx-primarytext;
 }
 .table-view > .virtual-flow > .scroll-bar:vertical,
 .table-view > .virtual-flow > .scroll-bar:vertical > .track,
@@ -238,16 +240,16 @@
 }
 .table-view > .virtual-flow > .scroll-bar > .increment-button,
 .table-view > .virtual-flow > .scroll-bar > .decrement-button {
-    -fx-text-fill: white;
+    -fx-text-fill: -fx-primarytext;
 }
 
 .table-view .filler{
-    -fx-fill: -fx-primary;
-    -fx-background-color: -fx-primary;
+    -fx-fill: -fx-secondary;
+    -fx-background-color: -fx-secondary;
 }
 .table-context
 {
-    -fx-base: -fx-primary;
+    -fx-base: -fx-secondary;
 }
 
 
