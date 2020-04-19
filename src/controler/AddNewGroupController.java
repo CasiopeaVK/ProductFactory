@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.Product;
 import model.ProductGroup;
 
 import java.io.File;
@@ -44,10 +45,11 @@ public class AddNewGroupController extends AnchorPane {
     private Image image;
     private TilePane groupPane;
     private ArrayList<CardController> cards;
-
-    public AddNewGroupController(TilePane groupPane, ArrayList<CardController> cards) {
+    private ArrayList<Product> products;
+    public AddNewGroupController(TilePane groupPane, ArrayList<CardController> cards, ArrayList<Product> products) {
         this.groupPane = groupPane;
         this.cards = cards;
+        this.products = products;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../fxml/window_add_new_group.fxml"));
         fxmlLoader.setRoot(this);
@@ -98,7 +100,7 @@ public class AddNewGroupController extends AnchorPane {
         }
 
         ProductGroup productGroup = new ProductGroup(image, nameField.getText(), descriptionField.getText());
-        CardController cardController = new CardController(productGroup, cards);
+        CardController cardController = new CardController(productGroup, cards,products);
         groupPane.getChildren().add(cardController);
         cards.add(cardController);
         //TODO add to DB

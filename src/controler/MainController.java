@@ -120,6 +120,7 @@ public class MainController implements Initializable {
     private DBContext dbContext;
     private ArrayList<CardController> cards = new ArrayList<CardController>();
     private ArrayList<JFXCheckBox> checkBoxes = new ArrayList<JFXCheckBox>();
+    private ArrayList<Product> products = new ArrayList<Product>();
 
     private ObservableList<ProductGroup> listGroup = FXCollections.observableArrayList();
     private ObservableList<Product> listProduct = FXCollections.observableArrayList();
@@ -185,16 +186,16 @@ public class MainController implements Initializable {
     }
 
     private void addGroupToCanvas(ProductGroup group) throws IOException {
-        CardController cardController = new CardController(group, cards);
+        CardController cardController = new CardController(group, cards, products);
         groupTilePane.getChildren().add(cardController);
         cards.add(cardController);
-
+        products.addAll(cardController.getGroup().getProduct());
     }
 
 
     @FXML
     public void addNewGroup(ActionEvent actionEvent) {
-        AddNewGroupController groupController = new AddNewGroupController(groupTilePane,cards);
+        AddNewGroupController groupController = new AddNewGroupController(groupTilePane,cards,products);
         Scene scene = new Scene(groupController, 400, 300);
         Stage window = new Stage();
         window.setTitle("Add new group:");
