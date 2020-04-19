@@ -72,6 +72,23 @@ public class AddNewGroupController extends AnchorPane {
 
     @FXML
     public void saveGroup() throws IOException {
+        boolean uniqueName = true;
+        for(CardController card : cards){
+            if(nameField.getText().equals(card.getName())){
+                uniqueName = false;
+                break;
+            }
+
+        }
+
+        if (!uniqueName) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Not unique name!");
+            alert.showAndWait();
+            return;
+        }
+
         if (imageView.getImage() == null || !nameField.validate()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -81,7 +98,7 @@ public class AddNewGroupController extends AnchorPane {
         }
 
         ProductGroup productGroup = new ProductGroup(image, nameField.getText(), descriptionField.getText());
-        CardController cardController = new CardController(productGroup);
+        CardController cardController = new CardController(productGroup, cards);
         groupPane.getChildren().add(cardController);
         cards.add(cardController);
         //TODO add to DB

@@ -23,6 +23,8 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+
 /**@author Stanislav Bohuta, Kozyr Vladislav, Izvostkin Danylo
  * Class for show edit window*/
 public class EditWindowController extends AnchorPane {
@@ -60,11 +62,13 @@ public class EditWindowController extends AnchorPane {
     /**Object of label card*/
     private Label cardLabel;
 
+    private ArrayList<CardController> cards;
     /**@param group
      * @param cardPhoto
      * @param  cardLabel
      * constructor*/
-    public EditWindowController(ProductGroup group, ImageView cardPhoto, Label cardLabel) {
+    public EditWindowController(ProductGroup group, ImageView cardPhoto, Label cardLabel, ArrayList<CardController> cards) {
+        this.cards = cards;
         loadFXml();
         initWindow(group, cardPhoto, cardLabel);
     }
@@ -121,6 +125,24 @@ public class EditWindowController extends AnchorPane {
     /**Method for save change on press button*/
     @FXML
     public void saveChange() {
+
+        boolean uniqueName = true;
+        for(CardController card : cards){
+            if(nameField.getText().equals(card.getName())){
+                uniqueName = false;
+                break;
+            }
+
+        }
+
+        if (!uniqueName) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Not unique name!");
+            alert.showAndWait();
+            return;
+        }
+
         if (imageField.getImage() == null || !nameField.validate()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");

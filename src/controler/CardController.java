@@ -47,15 +47,16 @@ public class CardController extends Pane {
     private Label cardLabel;
 
     private ProductGroup group;
+    private ArrayList<CardController> cards;
 
     public CardController(Image image, String name, String description) throws IOException {
         group = new ProductGroup(image, name, description);
         setStartConfig();
     }
 
-    public CardController(ProductGroup group) throws IOException {
+    public CardController(ProductGroup group, ArrayList<CardController> cards) throws IOException {
         this.group = group;
-
+        this.cards = cards;
         setStartConfig();
     }
 
@@ -90,7 +91,7 @@ public class CardController extends Pane {
 
     @FXML
     void showEditWindow()  {
-        EditWindowController editWindowController = new EditWindowController(group, imgGroup, cardLabel);
+        EditWindowController editWindowController = new EditWindowController(group, imgGroup, cardLabel, cards);
         Scene scene = new Scene(editWindowController);
         Stage stage = new Stage();
         stage.setScene(scene);

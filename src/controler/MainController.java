@@ -152,7 +152,7 @@ public class MainController implements Initializable {
         }
         System.out.println(productGroups);
 
-        chooseProductGroup.setItems(listGroup);
+
         initCheckBoxPlate();
     }
 
@@ -179,12 +179,20 @@ public class MainController implements Initializable {
     }
 
     private void addGroupToCanvas(ProductGroup group) throws IOException {
-        CardController cardController = new CardController(group);
+        CardController cardController = new CardController(group, cards);
         groupTilePane.getChildren().add(cardController);
         cards.add(cardController);
-        listGroup.add(cardController.getGroup());
+
     }
 
+    @FXML
+    public void addComboBoxGroup(){
+
+        listGroup = FXCollections.observableArrayList();
+        for(CardController card : cards)
+            listGroup.add(card.getGroup());
+        chooseProductGroup.setItems(listGroup);
+    }
     @FXML
     public void addNewGroup(ActionEvent actionEvent) {
         AddNewGroupController groupController = new AddNewGroupController(groupTilePane,cards);
@@ -271,13 +279,11 @@ public class MainController implements Initializable {
     @FXML
     public void chooseProductGroupListener(){
         currentGroup = chooseProductGroup.getValue();
-
         ArrayList<Product> products = currentGroup.getProduct();
-
+        listProduct =FXCollections.observableArrayList();
         for(Product product:products){
             listProduct.add(product);
         }
-
         chooseProduct.setItems(listProduct);
     }
 
