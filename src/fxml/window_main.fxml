@@ -18,6 +18,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
@@ -91,7 +92,12 @@
                         </VBox>
                      </center>
                      <bottom>
-                        <JFXButton fx:id="btn_createDiagram" onAction="#createDiagram" text="Create" BorderPane.alignment="CENTER" />
+                        <HBox BorderPane.alignment="CENTER">
+                           <children>
+                              <JFXButton fx:id="btn_createDiagram" onAction="#createDiagram" text="Create diagram" />
+                              <JFXButton fx:id="btn_showProducts" onAction="#showProducts" text="Show products" />
+                           </children>
+                        </HBox>
                      </bottom>
                   </BorderPane>
                   <VBox fx:id="vBoxAdaptive" prefHeight="200.0" prefWidth="533.0">

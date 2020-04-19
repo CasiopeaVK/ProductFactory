@@ -73,6 +73,7 @@ public class GroupInfoController extends SplitPane {
 
     private ProductGroup productGroup;
     private ArrayList<Product> allProducts;
+
     public GroupInfoController(ProductGroup group, ArrayList<Product> products) {
         this.allProducts = products;
 
@@ -158,6 +159,7 @@ public class GroupInfoController extends SplitPane {
         });
     }
 
+
     private void initializeTable(ProductGroup group) {
         initializeColumn();
         initializeFilterData(group);
@@ -197,7 +199,7 @@ public class GroupInfoController extends SplitPane {
         return FXCollections.observableList(group.getProducts());
     }
 
-    private void  initializeColumn() {
+    private void initializeColumn() {
         col_Id.setCellValueFactory(new PropertyValueFactory<Product, Integer>("ID"));
         col_Name.setCellValueFactory(new PropertyValueFactory<Product, String>("Name"));
         col_Quantity.setCellValueFactory(new PropertyValueFactory<Product, Integer>("Quantity"));
@@ -237,7 +239,7 @@ public class GroupInfoController extends SplitPane {
         }));
         col_Quantity.setOnEditCommit(e -> {
             Product tmpProduct = e.getTableView().getItems().get(e.getTablePosition().getRow());
-            if (e.getNewValue() == null) {
+            if (e.getNewValue() == null || e.getNewValue() < e.getOldValue()) {
                 tmpProduct.setQuantity(e.getOldValue());
                 tableView.refresh();
                 System.out.println("NULL");

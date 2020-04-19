@@ -1,7 +1,6 @@
 package controler;
 
 import com.google.gson.Gson;
-import com.google.gson.internal.$Gson$Preconditions;
 import com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.*;
 import db.DBContext;
@@ -16,21 +15,19 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
-
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Product;
 import model.ProductGroup;
 import model.WriteOffProduct;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -54,6 +51,7 @@ public class MainController implements Initializable {
 
     @FXML
     private TilePane diagramTilePane;
+
     @FXML
     private JFXComboBox<ProductGroup> chooseProductGroup;
 
@@ -65,6 +63,9 @@ public class MainController implements Initializable {
 
     @FXML
     private JFXSlider chooseSlider;
+
+    @FXML
+    private JFXButton btn_showProducts;
 
     @FXML
     private JFXButton btn_addGroup;
@@ -112,12 +113,9 @@ public class MainController implements Initializable {
     private DBContext dbContext;
     private ArrayList<CardController> cards = new ArrayList<CardController>();
     private ArrayList<JFXCheckBox> checkBoxes = new ArrayList<JFXCheckBox>();
-<<<<<<< HEAD
     public ArrayList<WriteOffProduct> writeOffProductArrayList = new ArrayList<WriteOffProduct>();
-=======
     private ArrayList<Product> products = new ArrayList<Product>();
-
->>>>>>> 3b4db2b1a5d1f7d8e102a9c05ec9f07faf7358a7
+    private ArrayList<ProductGroup> productGroups = new ArrayList<ProductGroup>();
     private ObservableList<ProductGroup> listGroup = FXCollections.observableArrayList();
     private ObservableList<Product> listProduct = FXCollections.observableArrayList();
     private ObservableList<WriteOffTable> listWriteOffTable = FXCollections.observableArrayList();
@@ -131,7 +129,7 @@ public class MainController implements Initializable {
         vBoxAdaptive.widthProperty().addListener((observableValue, number, t1) -> diagramTilePane.setPrefWidth(vBoxAdaptive.getWidth()));
         initSlider();
 
-        ArrayList<ProductGroup> productGroups = new ArrayList<ProductGroup>();
+        productGroups = new ArrayList<ProductGroup>();
         try {
             dbContext = new DBContext(new File("C:\\Users\\vladk\\IdeaProjects\\ProductFactory\\src\\db\\DB.json"));
             productGroups = dbContext.getProductGroups();
@@ -196,35 +194,37 @@ public class MainController implements Initializable {
         products.addAll(cardController.getGroup().getProduct());
     }
 
-<<<<<<< HEAD
     @FXML
     void writeOffProducts(ActionEvent event) {
         System.out.println("KEK");
         Product curProduct = chooseProduct.getValue();
-        Double writeOffQuantity = curProduct.getQuantity() - chooseSlider.getValue();
-        curProduct.setQuantity((int) Math.round(writeOffQuantity));
-        Integer quantity = curProduct.getQuantity();
-        writeOffProductArrayList.add(new WriteOffProduct(curProduct.getName(), quantity, curProduct.getPrice() * quantity));
-    }
+        if (!curProduct.getAvailability()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("You cannot write off this product!");
+            alert.showAndWait();
+        } else {
+            Double writeOffQuantity = curProduct.getQuantity() - chooseSlider.getValue();
+            curProduct.setQuantity((int) Math.round(writeOffQuantity));
+            Integer quantity = (int) Math.round(chooseSlider.getValue());
+            WriteOffProduct writeOffProduct = new WriteOffProduct(curProduct.getName(), quantity, curProduct.getPrice() * quantity);
+            writeOffTable.getObservableList().add(writeOffProduct);
 
-    @FXML
-    public void addComboBoxGroup() {
-
-        listGroup = FXCollections.observableArrayList();
-        for (CardController card : cards)
-            listGroup.add(card.getGroup());
-        chooseProductGroup.setItems(listGroup);
+            if (curProduct.getQuantity() == 0) {
+                curProduct.setAvailability(false);
+                chooseSlider.setMax(0);
+                chooseSlider.setMin(0);
+                chooseSlider.setValue(0);
+            } else {
+                chooseSlider.setMax(curProduct.getQuantity());
+                chooseSlider.setValue(1);
+            }
+        }
     }
 
     @FXML
     public void addNewGroup(ActionEvent actionEvent) {
-        AddNewGroupController groupController = new AddNewGroupController(groupTilePane, cards);
-=======
-
-    @FXML
-    public void addNewGroup(ActionEvent actionEvent) {
-        AddNewGroupController groupController = new AddNewGroupController(groupTilePane,cards,products);
->>>>>>> 3b4db2b1a5d1f7d8e102a9c05ec9f07faf7358a7
+        AddNewGroupController groupController = new AddNewGroupController(groupTilePane, cards, products);
         Scene scene = new Scene(groupController, 400, 300);
         Stage window = new Stage();
         window.setTitle("Add new group:");
@@ -306,14 +306,31 @@ public class MainController implements Initializable {
     }
 
     @FXML
-<<<<<<< HEAD
+    void showProducts(ActionEvent event) {
+        //TODO insert table
+        HashMap<String, ArrayList<Product>> showList = new HashMap<String, ArrayList<Product>>();
+        for (JFXCheckBox checkBox : checkBoxes) {
+            if (checkBox.isSelected()) {
+                for (ProductGroup productGroup : productGroups) {
+                    if (productGroup.getName().equals(checkBox.getText())) {
+                        showList.put(checkBox.getText(), productGroup.getProducts());
+                    }
+                }
+            }
+        }
+        ProductShowTable showTable = new ProductShowTable(showList);
+        Scene scene = new Scene(showTable, 400, 300);
+        Stage window = new Stage();
+        window.setTitle("Show table");
+        window.setScene(scene);
+        window.show();
+    }
+
+    @FXML
     public void chooseProductGroupListener() {
-=======
-    public void chooseProductGroupListener(){
-        if(chooseProductGroup.getValue() == null)
+        if (chooseProductGroup.getValue() == null)
             return;
 
->>>>>>> 3b4db2b1a5d1f7d8e102a9c05ec9f07faf7358a7
         currentGroup = chooseProductGroup.getValue();
         ArrayList<Product> products = currentGroup.getProduct();
         listProduct = FXCollections.observableArrayList();
@@ -324,50 +341,41 @@ public class MainController implements Initializable {
         chooseProduct.setItems(listProduct);
     }
 
-    @FXML
-<<<<<<< HEAD
-    public void chooseProductListener() {
-=======
-    public void addComboBoxGroup(){
-        if(!writeWindow.isSelected())
+    public void addComboBoxGroup() {
+        if (!writeWindow.isSelected())
             return;
 
         chooseProductGroup.getItems().clear();
         chooseProduct.getItems().clear();
         listGroup = FXCollections.observableArrayList();
-        for(CardController card : cards)
+        for (CardController card : cards)
             listGroup.add(card.getGroup());
         chooseProductGroup.setItems(listGroup);
     }
 
     @FXML
-    public void chooseProductListener(){
-        if(chooseProduct.getValue() == null){
+    public void chooseProductListener() {
+        if (chooseProduct.getValue() == null) {
             initSlider();
             return;
         }
 
->>>>>>> 3b4db2b1a5d1f7d8e102a9c05ec9f07faf7358a7
         currentProduct = chooseProduct.getValue();
         chooseSlider.setMin(1);
         chooseSlider.setMax(currentProduct.getQuantity());
         chooseSlider.setValue(1);
     }
 
-    private void initSlider(){
+    private void initSlider() {
         chooseSlider.setMin(0);
         chooseSlider.setMax(0);
         chooseSlider.setValue(0);
     }
-    @FXML
-<<<<<<< HEAD
-    public void createDiagram() {
-=======
-    public void createDiagram(){
-        if(!statisticWindow.isSelected())
-            return;
 
->>>>>>> 3b4db2b1a5d1f7d8e102a9c05ec9f07faf7358a7
+    @FXML
+    public void createDiagram() {
+        if (!statisticWindow.isSelected())
+            return;
         ArrayList<CardController> show = new ArrayList<CardController>();
 
         for (JFXCheckBox box : checkBoxes) {

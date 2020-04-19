@@ -39,11 +39,11 @@ public class WriteOffProduct {
         this.quantity = quantity;
     }
 
-    public Double getPrice() {
+    public Double getCost() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setCost(Double price) {
         this.price = price;
     }
 }
