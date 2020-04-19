@@ -4,9 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.*;
 import db.DBContext;
+import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -17,6 +19,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import model.Product;
 import model.ProductGroup;
 import model.WriteOffProduct;
@@ -110,6 +113,8 @@ public class MainController implements Initializable {
 
     private WriteOffTable writeOffTable;
 
+    private Stage stage;
+
     private DBContext dbContext;
     private ArrayList<CardController> cards = new ArrayList<CardController>();
     private ArrayList<JFXCheckBox> checkBoxes = new ArrayList<JFXCheckBox>();
@@ -128,7 +133,11 @@ public class MainController implements Initializable {
         groupScrollPane.widthProperty().addListener((observableValue, number, t1) -> groupTilePane.setPrefWidth(groupScrollPane.getWidth()));
         vBoxAdaptive.widthProperty().addListener((observableValue, number, t1) -> diagramTilePane.setPrefWidth(vBoxAdaptive.getWidth()));
         initSlider();
-
+        try {
+            test();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         productGroups = new ArrayList<ProductGroup>();
         try {
             dbContext = new DBContext(new File("C:\\Users\\vladk\\IdeaProjects\\ProductFactory\\src\\db\\DB.json"));
@@ -159,6 +168,21 @@ public class MainController implements Initializable {
         initWriteOffTable();
     }
 
+    public void setStage(Stage stage){
+        this.stage = stage;
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                System.out.println("KEKEKEK");
+                try {
+                    dbContext.writeDbFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
     private void initWriteOffTable() {
         WriteOffTable writeOffTable = new WriteOffTable(writeOffProductArrayList);
         this.writeOffTable = writeOffTable;
@@ -169,8 +193,8 @@ public class MainController implements Initializable {
         File file = new File("C:\\Users\\vladk\\IdeaProjects\\ExcelTest\\src\\grecha.jpg");
         Image image = new Image("grecha.jpg");
         ArrayList<ProductGroup> groups = new ArrayList<ProductGroup>();
-        for (int i = 0; i < 20; i++) {
-            ProductGroup productGroup = new ProductGroup(image, "EKE" + i, "norm");
+        for (int i = 0; i < 5; i++) {
+            ProductGroup productGroup = new ProductGroup(image, "STAS" + i, "norm");
             for (int j = 0; j < 20; j++) {
                 String name = "Name - " + j;
                 double price = 1 + j * 4;
@@ -182,13 +206,13 @@ public class MainController implements Initializable {
             groups.add(productGroup);
         }
         FileWriter fileWriter = new FileWriter("DB.json");
-        fileWriter.write(new Gson().toJson(groups, new TypeToken<ArrayList<Product>>() {
+        fileWriter.write(new Gson().toJson(groups, new TypeToken<ArrayList<ProductGroup>>() {
         }.getType()));
         fileWriter.close();
     }
 
     private void addGroupToCanvas(ProductGroup group) throws IOException {
-        CardController cardController = new CardController(group, cards, products);
+        CardController cardController = new CardController(group, cards, products, groupTilePane, dbContext);
         groupTilePane.getChildren().add(cardController);
         cards.add(cardController);
         products.addAll(cardController.getGroup().getProduct());
@@ -224,7 +248,7 @@ public class MainController implements Initializable {
 
     @FXML
     public void addNewGroup(ActionEvent actionEvent) {
-        AddNewGroupController groupController = new AddNewGroupController(groupTilePane, cards, products);
+        AddNewGroupController groupController = new AddNewGroupController(groupTilePane, cards, products, dbContext);
         Scene scene = new Scene(groupController, 400, 300);
         Stage window = new Stage();
         window.setTitle("Add new group:");
@@ -311,7 +335,7 @@ public class MainController implements Initializable {
         HashMap<String, ArrayList<Product>> showList = new HashMap<String, ArrayList<Product>>();
         for (JFXCheckBox checkBox : checkBoxes) {
             if (checkBox.isSelected()) {
-                for (ProductGroup productGroup : productGroups) {
+                for (ProductGroup productGroup : dbContext.getLoadedProductGroups()) {
                     if (productGroup.getName().equals(checkBox.getText())) {
                         showList.put(checkBox.getText(), productGroup.getProducts());
                     }

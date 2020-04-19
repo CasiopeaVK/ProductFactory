@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.DoubleValidator;
 import com.jfoenix.validation.IntegerValidator;
-import com.jfoenix.validation.NumberValidator;
 import com.jfoenix.validation.RequiredFieldValidator;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
@@ -14,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -21,6 +21,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
@@ -29,7 +31,6 @@ import model.ProductGroup;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -73,9 +74,9 @@ public class GroupInfoController extends SplitPane {
 
     private ProductGroup productGroup;
     private ArrayList<Product> allProducts;
+    private Stage stage;
 
     public GroupInfoController(ProductGroup group, ArrayList<Product> products) {
-        this.allProducts = products;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../fxml/window_group_info.fxml"));
         fxmlLoader.setRoot(this);
@@ -86,10 +87,22 @@ public class GroupInfoController extends SplitPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        this.allProducts = products;
         this.productGroup = group;
         initializeTable(group);
         setValidation();
+    }
 
+    public void setStage(Stage stage) {
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                System.out.println(new ArrayList<Product>(products));
+                ArrayList<Product> productsFromTable = new ArrayList<Product>(products);
+                productGroup.setProducts(new ArrayList<Product>(products));
+            }
+        });
     }
 
     @FXML
@@ -127,7 +140,7 @@ public class GroupInfoController extends SplitPane {
 
     @FXML
     public void showGroup(ActionEvent actionEvent) {
-        System.out.println(new ArrayList<Product>(products));
+
     }
 
     private void setValidation() {
@@ -196,7 +209,8 @@ public class GroupInfoController extends SplitPane {
     }
 
     private ObservableList<Product> getDataFromGroup(ProductGroup group) {
-        return FXCollections.observableList(group.getProducts());
+        ArrayList<Product> productArrayList = (ArrayList<Product>)group.getProducts().clone();
+        return FXCollections.observableList(productArrayList);
     }
 
     private void initializeColumn() {

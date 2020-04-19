@@ -3,12 +3,11 @@
 <?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.control.TreeTableView?>
 
-<fx:root fx:id="showTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="TreeTableView"
-         xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<fx:root fx:id="showTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="TreeTableView" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <columns>
     <TreeTableColumn fx:id="col_Name" prefWidth="143.20001220703125" text="Name" />
       <TreeTableColumn fx:id="col_Quantity" prefWidth="231.20001220703125" text="Quantity" />
-      <TreeTableColumn fx:id="col_Availability" prefWidth="116.00006103515625" text="Avaliability" />
-      <TreeTableColumn fx:id="col_Price" minWidth="0.0" prefWidth="112.7999267578125" text="Price" />
+      <TreeTableColumn fx:id="col_Availability" prefWidth="103.199951171875" text="Avaliability" />
+      <TreeTableColumn fx:id="col_Price" minWidth="0.0" prefWidth="127.20001220703125" text="Price" />
   </columns>
 </fx:root>

@@ -4,26 +4,26 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
+import db.DBContext;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import model.Product;
 import model.ProductGroup;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 /**
  * @author Stanislav Bohuta, Kozyr Vladislav, Izvostkin Danylo
@@ -84,13 +84,16 @@ public class EditWindowController extends AnchorPane {
 
     private ArrayList<CardController> cards;
 
+    private CardController card;
+
     /**
      * @param group
      * @param cardPhoto
      * @param cardLabel constructor
      */
-    public EditWindowController(ProductGroup group, ImageView cardPhoto, Label cardLabel, ArrayList<CardController> cards) {
+    public EditWindowController(ProductGroup group, ImageView cardPhoto, Label cardLabel, ArrayList<CardController> cards, CardController card) {
         this.cards = cards;
+        this.card = card;
         loadFXml();
         initWindow(group, cardPhoto, cardLabel);
     }
@@ -193,10 +196,26 @@ public class EditWindowController extends AnchorPane {
         cardPhoto.setImage(group.getGroupIcon());
         cardLabel.setText(group.getName());
 
+
         //частина коду для закриття вікна
         Stage stage = (Stage) btn_save.getScene().getWindow();
         stage.close();
+    }
 
+    @FXML
+    public void deleteGroup(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm action!");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you want to delete selected?");
+        Optional<ButtonType> action = alert.showAndWait();
 
+        if (action.get() == ButtonType.OK) {
+            cards.remove(card);
+            card.getTilePane().getChildren().remove(card);
+            card.getDbContext().removeProductGroup(group);
+            Stage stage = (Stage)this.getScene().getWindow();
+            stage.close();
+        }
     }
 }

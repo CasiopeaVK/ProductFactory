@@ -2,11 +2,11 @@ package db;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import model.Product;
 import model.ProductGroup;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class DBContext {
     private File mainContext;
@@ -22,13 +22,13 @@ public class DBContext {
 
     }
 
-    private void writeDbFile() throws IOException {
+    public void writeDbFile() throws IOException {
         FileWriter fileWriter = new FileWriter(this.mainContext);
         fileWriter.write(new Gson().toJson(productGroups));
         fileWriter.close();
     }
 
-    public ArrayList<ProductGroup> getLoadedProductGroups(){
+    public ArrayList<ProductGroup> getLoadedProductGroups() {
         return this.productGroups;
     }
 
@@ -37,6 +37,7 @@ public class DBContext {
         ArrayList<ProductGroup> groups = new Gson().fromJson(fileReader, new TypeToken<ArrayList<ProductGroup>>() {
         }.getType());
         fileReader.close();
+        this.productGroups = groups;
         return groups;
     }
 
@@ -46,5 +47,12 @@ public class DBContext {
 
     public void removeProductGroup(ProductGroup productGroup) {
         this.productGroups.remove(productGroup);
+    }
+
+    public static ProductGroup getProductGroup(File file) throws FileNotFoundException {
+        FileReader fileReader = new FileReader(file);
+        ArrayList<ProductGroup> productGroup = new Gson().fromJson(fileReader, new TypeToken<ArrayList<ProductGroup>>() {
+        }.getType());
+        return productGroup.get(0);
     }
 }

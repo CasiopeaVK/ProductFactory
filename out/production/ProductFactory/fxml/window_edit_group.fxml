@@ -35,7 +35,7 @@
                </children>
             </GridPane>
             <JFXButton fx:id="btn_change" buttonType="RAISED" onAction="#choosePhoto" text="Change photo" GridPane.rowIndex="1" />
-            <JFXButton fx:id="btn_delete" buttonType="RAISED" text="Delete" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <JFXButton fx:id="btn_delete" buttonType="RAISED" onAction="#deleteGroup" text="Delete" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <ImageView fx:id="imageField" fitHeight="122.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </GridPane>

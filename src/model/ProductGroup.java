@@ -1,23 +1,15 @@
 package model;
 
 import com.google.gson.annotations.Expose;
-import db.DBContext;
-
-import java.awt.*;
-import java.awt.image.*;
-import java.io.*;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
-import javafx.scene.image.WritableImage;
 
-import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class ProductGroup {
     @Expose
@@ -50,7 +42,10 @@ public class ProductGroup {
 
     }
 
-    public ArrayList<Product> getProduct(){return products;}
+    public ArrayList<Product> getProduct() {
+        return products;
+    }
+
     public String getName() {
         return name;
     }
@@ -93,22 +88,29 @@ public class ProductGroup {
         this.products.add(product);
     }
 
-    public Double getPrice(){
+    public Double getPrice() {
         double price = 0;
 
-        for (Product product:products){
-            price+= product.getPrice()*product.getQuantity();
+        for (Product product : products) {
+            price += product.getPrice() * product.getQuantity();
         }
 
         return price;
     }
-    public int getCountProducts(){
+
+    public int getCountProducts() {
         int count = 0;
-        for(Product product:products){
-            count+=product.getQuantity();
+        for (Product product : products) {
+            count += product.getQuantity();
         }
         return count;
     }
 
-    public String toString(){return name;}
+    public String toString() {
+        return name;
+    }
+
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
+    }
 }
