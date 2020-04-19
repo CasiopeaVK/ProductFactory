@@ -73,6 +73,7 @@ public class GroupInfoController extends SplitPane {
 
     private ProductGroup productGroup;
     private ArrayList<Product> allProducts;
+
     public GroupInfoController(ProductGroup group, ArrayList<Product> products) {
         this.allProducts = products;
 
@@ -88,11 +89,20 @@ public class GroupInfoController extends SplitPane {
         this.productGroup = group;
         initializeTable(group);
         setValidation();
+
     }
 
     @FXML
     void addProduct(ActionEvent event) {
         System.out.println("KEK");
+        if (isConsist()) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("This name is used!");
+            alert.showAndWait();
+            return;
+        }
         if (!nameField.validate() || !quantityField.validate() || !priceField.validate()) {
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -128,6 +138,14 @@ public class GroupInfoController extends SplitPane {
         System.out.println(new ArrayList<Product>(products));
     }
 
+    private boolean isConsist(){
+        for(Product product:allProducts){
+            if(product.getName().equals(nameField.getText()))
+                return true;
+        }
+        return false;
+    }
+
     private void setValidation() {
         RequiredFieldValidator textValidator = new RequiredFieldValidator();
         textValidator.setMessage("No empty input!");
@@ -156,6 +174,7 @@ public class GroupInfoController extends SplitPane {
             }
         });
     }
+
 
     private void initializeTable(ProductGroup group) {
         initializeColumn();
@@ -236,7 +255,7 @@ public class GroupInfoController extends SplitPane {
         }));
         col_Quantity.setOnEditCommit(e -> {
             Product tmpProduct = e.getTableView().getItems().get(e.getTablePosition().getRow());
-            if (e.getNewValue() == null) {
+            if (e.getNewValue() == null || e.getNewValue() < e.getOldValue()) {
                 tmpProduct.setQuantity(e.getOldValue());
                 tableView.refresh();
                 System.out.println("NULL");

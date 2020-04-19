@@ -1,0 +1,45 @@
+* {
+    /*colors*/
+    -fx-primary : #bb86fc;
+    -fx-primary-active : #a673e7;
+    -fx-background : #000;
+    -fx-surface : #181818;
+    -fx-error : #cf6679;
+    -fx-secondary : #03dac5;
+    -fx-primarytext : #fff;
+}
+
+.scroll-pane:focused {
+    -fx-background-insets: 0;
+}
+
+.scroll-bar:vertical .track, .scroll-bar:horizontal .track{
+    -fx-background-color: -fx-background;
+}
+
+.scroll-bar:vertical .thumb, .scroll-bar:horizontal .thumb{
+    -fx-background-color: -fx-primary;
+}
+
+.scroll-bar:vertical *.increment-button,
+.scroll-bar:vertical *.decrement-button,
+.scroll-bar:horizontal *.increment-button,
+.scroll-bar:horizontal *.decrement-button{
+    -fx-background-color: -fx-background;
+    -fx-border-insets: 0;
+    -fx-background-insets: 0;
+
+}
+.scroll-pane .corner{
+    -fx-background-insets: 0;
+    -fx-background-color: transparent;
+}
+
+.scroll-pane {
+    -fx-background-insets: 0;
+    -fx-background: -fx-background;
+    -fx-padding: 0;
+}
+.scroll-pane > .viewport  {
+    -fx-background-color: -fx-background;
+}
