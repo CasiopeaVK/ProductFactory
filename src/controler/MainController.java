@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
+
     @FXML
     private Label countOfGroupLabel;
 
@@ -192,9 +193,10 @@ public class MainController implements Initializable {
         window.setTitle("Add new group:");
         window.setScene(scene);
         window.show();
-        window.setOnHidden(windowEvent -> initCheckBoxPlate());
+
     }
 
+    @FXML
     private void initCheckBoxPlate(){
         setStatistic();
 
@@ -210,6 +212,7 @@ public class MainController implements Initializable {
             checkBoxPlate.getChildren().add(box);
         }
     }
+
     private void setStatistic(){
         countOfGroupLabel.setText(""+cards.size());
 
