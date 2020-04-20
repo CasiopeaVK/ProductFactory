@@ -9,11 +9,13 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Base64;
 
 public class ProductGroup {
     @Expose
-    private byte[] imageCode;
+    private String imageString;
     @Expose
     private String name;
     @Expose
@@ -32,10 +34,14 @@ public class ProductGroup {
 
     private void setImageCode(Image image) {
         try {
+
             BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
             ByteArrayOutputStream s = new ByteArrayOutputStream();
             ImageIO.write(bufferedImage, "jpg", s);
-            this.imageCode = s.toByteArray();
+            byte[] imageBytes = s.toByteArray();
+            s.close();
+            this.imageString = Base64.getEncoder().encodeToString(imageBytes);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -64,12 +70,9 @@ public class ProductGroup {
     }
 
     public void updateImage() {
-        try {
-            BufferedImage image = ImageIO.read(new ByteArrayInputStream(this.imageCode));
-            this.groupImage = SwingFXUtils.toFXImage(image, null);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        byte[] imageByteArray = Base64.getDecoder().decode(this.imageString);
+        ByteArrayInputStream bis = new ByteArrayInputStream(imageByteArray);
+        this.groupImage = new Image(bis);
     }
 
     public void setName(String name) {

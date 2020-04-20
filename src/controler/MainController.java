@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.*;
 import db.DBContext;
-import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -121,6 +120,7 @@ public class MainController implements Initializable {
     public ArrayList<WriteOffProduct> writeOffProductArrayList = new ArrayList<WriteOffProduct>();
     private ArrayList<Product> products = new ArrayList<Product>();
     private ArrayList<ProductGroup> productGroups = new ArrayList<ProductGroup>();
+    private ArrayList<WriteOffProduct> writeOffProducts = new ArrayList<WriteOffProduct>();
     private ObservableList<ProductGroup> listGroup = FXCollections.observableArrayList();
     private ObservableList<Product> listProduct = FXCollections.observableArrayList();
     private ObservableList<WriteOffTable> listWriteOffTable = FXCollections.observableArrayList();
@@ -140,8 +140,10 @@ public class MainController implements Initializable {
         }
         productGroups = new ArrayList<ProductGroup>();
         try {
-            dbContext = new DBContext(new File("C:\\Users\\vladk\\IdeaProjects\\ProductFactory\\src\\db\\DB.json"));
+            dbContext = new DBContext(new File("C:\\Users\\vladk\\IdeaProjects\\ProductFactory\\src\\db\\DB.json"),
+                    new File("C:\\Users\\vladk\\IdeaProjects\\ProductFactory\\src\\db\\history.json"));
             productGroups = dbContext.getProductGroups();
+            writeOffProductArrayList = dbContext.getWriteOffProducts();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -168,7 +170,7 @@ public class MainController implements Initializable {
         initWriteOffTable();
     }
 
-    public void setStage(Stage stage){
+    public void setStage(Stage stage) {
         this.stage = stage;
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
@@ -190,8 +192,8 @@ public class MainController implements Initializable {
     }
 
     private void test() throws IOException {
-        File file = new File("C:\\Users\\vladk\\IdeaProjects\\ExcelTest\\src\\grecha.jpg");
-        Image image = new Image("grecha.jpg");
+        File file = new File("C:\\Users\\vladk\\IdeaProjects\\ProductFactory\\src\\package.jpg");
+        Image image = new Image("package.jpg");
         ArrayList<ProductGroup> groups = new ArrayList<ProductGroup>();
         for (int i = 0; i < 5; i++) {
             ProductGroup productGroup = new ProductGroup(image, "STAS" + i, "norm");
@@ -233,6 +235,7 @@ public class MainController implements Initializable {
             Integer quantity = (int) Math.round(chooseSlider.getValue());
             WriteOffProduct writeOffProduct = new WriteOffProduct(curProduct.getName(), quantity, curProduct.getPrice() * quantity);
             writeOffTable.getObservableList().add(writeOffProduct);
+            writeOffProductArrayList.add(writeOffProduct);
 
             if (curProduct.getQuantity() == 0) {
                 curProduct.setAvailability(false);
