@@ -94,7 +94,7 @@
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="menu-box" BorderPane.alignment="CENTER">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header_menu_text" text="Select groups:" />
-                              <ScrollPane prefHeight="99.0" prefWidth="326.0" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
+                              <ScrollPane prefHeight="99.0" prefWidth="326.0" VBox.vgrow="ALWAYS">
                                  <content>
                                     <VBox fx:id="checkBoxPlate" />
                                  </content>
@@ -158,7 +158,7 @@
                               <Label fx:id="totalCostLabel" prefHeight="18.0" prefWidth="411.0" styleClass="text-info" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
-                        <ScrollPane fx:id="groupScrollPane1" hbarPolicy="NEVER" prefHeight="404.0" prefWidth="628.0" stylesheets="@../black-scroll.css" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
+                        <ScrollPane fx:id="groupScrollPane1" hbarPolicy="NEVER" prefHeight="404.0" prefWidth="628.0" stylesheets="@../black-scroll.css" VBox.vgrow="ALWAYS">
                            <content>
                               <TilePane fx:id="diagramTilePane" prefHeight="251.0" prefWidth="628.0">
                                  <children>

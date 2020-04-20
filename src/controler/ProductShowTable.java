@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class for table off all products
+ */
 public class ProductShowTable extends TreeTableView {
 
     @FXML
@@ -34,6 +37,9 @@ public class ProductShowTable extends TreeTableView {
     @FXML
     private TreeTableColumn<Product, Boolean> col_Availability;
 
+    /**
+     * @param productInfo
+     */
     public ProductShowTable(HashMap<String, ArrayList<Product>> productInfo) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
                 "../fxml/window_product_show.fxml"));
@@ -49,6 +55,9 @@ public class ProductShowTable extends TreeTableView {
         createTreeTable(productInfo);
     }
 
+    /**
+     * @param productInfo
+     */
     private void createTreeTable(HashMap<String, ArrayList<Product>> productInfo) {
         Double totalCost = 0.0;
         TreeItem<Product> groups = new TreeItem<>(new Product("Groups:", productInfo.size(), 0.0, true));
@@ -68,6 +77,9 @@ public class ProductShowTable extends TreeTableView {
         showTable.setRoot(groups);
     }
 
+    /**
+     * Initialize table
+     */
     private void initTable() {
         col_Name.setCellValueFactory(new TreeItemPropertyValueFactory<Product, String>("Name"));
         col_Quantity.setCellValueFactory(new TreeItemPropertyValueFactory<Product, Integer>("Quantity"));

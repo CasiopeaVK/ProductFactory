@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<JFXTabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="960.0" style="-fx-background-color: #000;" stylesheets="@../Styles.css" viewOrder="2.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controler.MainController">
+   <tabs>
+      <Tab disable="true" styleClass="labawork" text="Labawork">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        </content>
+      </Tab>
+      <Tab text="Groups">
+         <content>
+            <SplitPane dividerPositions="0.25" focusTraversable="false" prefHeight="200.0" prefWidth="200.0">
+               <items>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #121212;">
+                     <bottom>
+                        <JFXButton fx:id="btn_addGroup" onAction="#addNewGroup" styleClass="button_menu" text="Add new group" BorderPane.alignment="CENTER" />
+                     </bottom>
+                     <center>
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="menu-box" BorderPane.alignment="CENTER">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header_menu_text" text="Sort by:" />
+                              <ScrollPane prefHeight="99.0" prefWidth="326.0" VBox.vgrow="ALWAYS">
+                                 <content>
+                                    <VBox>
+                                       <children>
+                                          <JFXRadioButton fx:id="rb_alphabet" onAction="#sortCardByAlphabet" text="Alphabet">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="group" />
+                                             </toggleGroup>
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </JFXRadioButton>
+                                          <JFXRadioButton fx:id="rb_cost" onAction="#sortCardByCost" text="Cost" toggleGroup="$group">
+                                             <VBox.margin>
+                                                <Insets top="5.0" />
+                                             </VBox.margin></JFXRadioButton>
+                                          <JFXRadioButton fx:id="rb_count" onAction="#sortByCountProducts" text="Count" toggleGroup="$group">
+                                             <VBox.margin>
+                                                <Insets top="5.0" />
+                                             </VBox.margin></JFXRadioButton>
+                                       </children>
+                                    </VBox>
+                                 </content>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ScrollPane>
+                           </children>
+                        </VBox>
+                     </center>
+                  </BorderPane>
+                  <ScrollPane fx:id="groupScrollPane" stylesheets="@../black-scroll.css" vbarPolicy="ALWAYS">
+                     <content>
+                        <TilePane fx:id="groupTilePane" />
+                     </content>
+                  </ScrollPane>
+               </items>
+            </SplitPane>
+         </content>
+      </Tab>
+      <Tab fx:id="statisticWindow" onSelectionChanged="#initCheckBoxPlate" text="Statistics">
+         <content>
+            <SplitPane dividerPositions="0.25" prefHeight="200.0" prefWidth="200.0">
+               <items>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #121212;">
+                     <center>
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="menu-box" BorderPane.alignment="CENTER">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header_menu_text" text="Select groups:" />
+                              <ScrollPane prefHeight="99.0" prefWidth="326.0" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
+                                 <content>
+                                    <VBox fx:id="checkBoxPlate" />
+                                 </content>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </ScrollPane>
+                           </children>
+                        </VBox>
+                     </center>
+                     <bottom>
+                        <VBox BorderPane.alignment="CENTER">
+                           <children>
+                              <JFXButton fx:id="btn_createDiagram" minHeight="0.0" onAction="#createDiagram" prefHeight="40.0" prefWidth="1000.0" styleClass="button_menu" text="Refresh graphs">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="3.0" />
+                                 </VBox.margin>
+                              </JFXButton>
+                              <JFXButton fx:id="btn_createDiagram1" onAction="#createDiagram" prefHeight="40.0" prefWidth="1000.0" styleClass="button_menu" text="Refresh graphs">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </VBox>
+                     </bottom>
+                  </BorderPane>
+                  <VBox fx:id="vBoxAdaptive" prefHeight="200.0" prefWidth="533.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header_menu_text" text="Statistics of all groups:" />
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="263.00008824137535" minWidth="10.0" prefWidth="197.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="528.0" minWidth="10.0" prefWidth="499.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Count of groups:">
+                                 <styleClass>
+                                    <String fx:value="text-info" />
+                                    <String fx:value="text-info-header" />
+                                 </styleClass>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Count of products:" GridPane.rowIndex="1">
+                                 <styleClass>
+                                    <String fx:value="text-info" />
+                                    <String fx:value="text-info-header" />
+                                 </styleClass>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total cost:" GridPane.rowIndex="2">
+                                 <styleClass>
+                                    <String fx:value="text-info-header" />
+                                    <String fx:value="text-info" />
+                                 </styleClass>
+                              </Text>
+                              <Label fx:id="countOfGroupLabel" prefHeight="18.0" prefWidth="386.0" styleClass="text-info" text="sdsd" GridPane.columnIndex="1" />
+                              <Label fx:id="countOfProductsLabel" prefHeight="18.0" prefWidth="410.0" styleClass="text-info" text="sdsd" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="totalCostLabel" prefHeight="18.0" prefWidth="411.0" styleClass="text-info" text="sdsd" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </GridPane>
+                        <Text layoutX="30.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header_menu_text" text="Statistics of selected groups:">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <ScrollPane fx:id="groupScrollPane1" hbarPolicy="NEVER" prefHeight="404.0" prefWidth="628.0" stylesheets="@../black-scroll.css" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
+                           <content>
+                              <TilePane fx:id="diagramTilePane" prefHeight="251.0" prefWidth="628.0">
+                                 <children>
+                                    <BarChart fx:id="diagramGistogram" prefHeight="251.0" prefWidth="176.0">
+                                      <xAxis>
+                                        <CategoryAxis side="BOTTOM" tickLabelFill="WHITE" fx:id="xAxis" />
+                                      </xAxis>
+                                      <yAxis>
+                                        <NumberAxis fx:id="yAxis" side="LEFT" tickLabelFill="WHITE" />
+                                      </yAxis>
+                                    </BarChart>
+                                    <PieChart fx:id="diagramCircle" prefHeight="251.0" prefWidth="311.0" />
+                                 </children>
+                              </TilePane>
+                           </content>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </ScrollPane>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </items>
+            </SplitPane>
+         </content>
+      </Tab>
+      <Tab fx:id="writeWindow" onSelectionChanged="#addComboBoxGroup" text="Write off">
+         <content>
+            <SplitPane dividerPositions="0.25" prefHeight="200.0" prefWidth="200.0">
+               <items>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #121212;">
+                     <bottom>
+                        <JFXButton fx:id="btn_writeOff" onAction="#writeOffProducts" styleClass="button_menu" text="Write off products" BorderPane.alignment="CENTER" />
+                     </bottom>
+                     <center>
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="menu-box" BorderPane.alignment="CENTER">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header_menu_text" text="Choose group:" />
+                              <JFXComboBox fx:id="chooseProductGroup" onAction="#chooseProductGroupListener" prefHeight="30.0" prefWidth="314.0">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin></JFXComboBox>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header_menu_text" text="Choose product:">
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin></Text>
+                              <JFXComboBox fx:id="chooseProduct" onAction="#chooseProductListener" prefHeight="30.0" prefWidth="329.0">
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin></JFXComboBox>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header_menu_text" text="Choose count:">
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <JFXSlider fx:id="chooseSlider">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin></JFXSlider>
+                           </children>
+                        </VBox>
+                     </center>
+                  </BorderPane>
+                  <GridPane fx:id="tableCell">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <TableView prefHeight="200.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                              <TableColumn prefWidth="75.0" text="Column X" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </GridPane>
+               </items>
+            </SplitPane>
+         </content>
+      </Tab>
+   </tabs>
+</JFXTabPane>

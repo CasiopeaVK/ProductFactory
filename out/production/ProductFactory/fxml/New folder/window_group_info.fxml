@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<fx:root dividerPositions="0.32608695652173914" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="javafx.scene.control.SplitPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <items>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <bottom>
+            <JFXButton fx:id="btn_confirm" onAction="#showGroup" text="Confirm" BorderPane.alignment="CENTER" />
+         </bottom>
+         <top>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <JFXTextField />
+                  <JFXTextField fx:id="nameField" promptText="Enter name" />
+                  <JFXTextField fx:id="quantityField" promptText="Enter quantity" />
+                  <JFXTextField fx:id="priceField" promptText="Enter price" />
+                  <JFXButton fx:id="btn_addProduct" onAction="#addProduct" text="Add" />
+                  <JFXButton onAction="#deleteProducts" text="Remove" />
+               </children>
+            </VBox>
+         </top>
+      </BorderPane>
+      <VBox>
+         <children>
+            <JFXTextField fx:id="searchField" />
+            <TableView fx:id="tableView">
+              <columns>
+                <TableColumn fx:id="col_Id" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="col_Name" prefWidth="75.0" text="Name" />
+                  <TableColumn fx:id="col_Quantity" prefWidth="75.0" text="Quantity" />
+                  <TableColumn fx:id="col_Price" prefWidth="75.0" text="Price" />
+                  <TableColumn fx:id="col_Availability" prefWidth="75.0" text="Aviliability" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children>
+      </VBox>
+   </items>
+</fx:root>

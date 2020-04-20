@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.DoubleValidator;
 import com.jfoenix.validation.IntegerValidator;
-import com.jfoenix.validation.NumberValidator;
 import com.jfoenix.validation.RequiredFieldValidator;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
@@ -14,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -21,6 +21,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
@@ -29,10 +31,12 @@ import model.ProductGroup;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class for window info control
+ */
 public class GroupInfoController extends SplitPane {
 
     @FXML
@@ -73,9 +77,13 @@ public class GroupInfoController extends SplitPane {
 
     private ProductGroup productGroup;
     private ArrayList<Product> allProducts;
+    private Stage stage;
 
+    /**
+     * @param group
+     * @param products
+     */
     public GroupInfoController(ProductGroup group, ArrayList<Product> products) {
-        this.allProducts = products;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../fxml/window_group_info.fxml"));
         fxmlLoader.setRoot(this);
@@ -86,12 +94,30 @@ public class GroupInfoController extends SplitPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        this.allProducts = products;
         this.productGroup = group;
         initializeTable(group);
         setValidation();
-
     }
 
+    /**
+     * @param stage
+     */
+    public void setStage(Stage stage) {
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                System.out.println(new ArrayList<Product>(products));
+                ArrayList<Product> productsFromTable = new ArrayList<Product>(products);
+                productGroup.setProducts(new ArrayList<Product>(products));
+            }
+        });
+    }
+
+    /**
+     * @param event
+     */
     @FXML
     void addProduct(ActionEvent event) {
         System.out.println("KEK");
@@ -116,8 +142,13 @@ public class GroupInfoController extends SplitPane {
         Double price = Double.parseDouble(priceField.getText());
         Product product = new Product(name, quantity, price, true);
         products.add(product);
+        allProducts.add(product);
+        allProducts.add(product);
     }
 
+    /**
+     * @param actionEvent
+     */
     @FXML
     public void deleteProducts(ActionEvent actionEvent) {
         List<Product> selectedItems = tableView.getSelectionModel().getSelectedItems();
@@ -130,14 +161,18 @@ public class GroupInfoController extends SplitPane {
 
         if (action.get() == ButtonType.OK) {
             products.removeAll(selectedItems);
+            allProducts.removeAll(selectedItems);
         }
     }
 
     @FXML
     public void showGroup(ActionEvent actionEvent) {
-        System.out.println(new ArrayList<Product>(products));
+
     }
 
+    /**
+     * @return is consist name
+     */
     private boolean isConsist(){
         for(Product product:allProducts){
             if(product.getName().equals(nameField.getText()))
@@ -146,6 +181,9 @@ public class GroupInfoController extends SplitPane {
         return false;
     }
 
+    /**
+     * add validation for form
+     */
     private void setValidation() {
         RequiredFieldValidator textValidator = new RequiredFieldValidator();
         textValidator.setMessage("No empty input!");
@@ -176,11 +214,17 @@ public class GroupInfoController extends SplitPane {
     }
 
 
+    /**
+     * @param group
+     */
     private void initializeTable(ProductGroup group) {
         initializeColumn();
         initializeFilterData(group);
     }
 
+    /**
+     * @param group
+     */
     private void initializeFilterData(ProductGroup group) {
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         tableView.setEditable(true);
@@ -211,10 +255,18 @@ public class GroupInfoController extends SplitPane {
 
     }
 
+    /**
+     * @param group
+     * @return
+     */
     private ObservableList<Product> getDataFromGroup(ProductGroup group) {
-        return FXCollections.observableList(group.getProducts());
+        ArrayList<Product> productArrayList = (ArrayList<Product>)group.getProducts().clone();
+        return FXCollections.observableList(productArrayList);
     }
 
+    /**
+     * initialize column in table
+     */
     private void initializeColumn() {
         col_Id.setCellValueFactory(new PropertyValueFactory<Product, Integer>("ID"));
         col_Name.setCellValueFactory(new PropertyValueFactory<Product, String>("Name"));

@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Class for create write off table
+ */
 public class WriteOffTable extends TableView {
     @FXML
     private TableView<WriteOffProduct> writeOffTable;
@@ -32,6 +35,9 @@ public class WriteOffTable extends TableView {
 
     private ObservableList<WriteOffProduct> writeOffProductObservableList;
 
+    /**
+     * @param writeOffProducts
+     */
     public WriteOffTable(ArrayList<WriteOffProduct> writeOffProducts) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
                 "../fxml/writeOffTable.fxml"));
@@ -46,6 +52,9 @@ public class WriteOffTable extends TableView {
         initTable(writeOffProducts);
     }
 
+    /**
+     * @param writeOffProducts
+     */
     private void initTable(ArrayList<WriteOffProduct> writeOffProducts) {
         col_Date.setCellValueFactory(new PropertyValueFactory<WriteOffProduct, Date>("Date"));
         col_Name.setCellValueFactory(new PropertyValueFactory<WriteOffProduct, String>("Name"));
@@ -55,6 +64,9 @@ public class WriteOffTable extends TableView {
         writeOffTable.setItems(writeOffProductObservableList);
     }
 
+    /**
+     * @return list of product
+     */
     public ObservableList<WriteOffProduct> getObservableList() {
         return writeOffProductObservableList;
     }
