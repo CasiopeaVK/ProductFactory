@@ -54,6 +54,7 @@ public class AddNewGroupController extends AnchorPane {
     private ArrayList<Product> products;
     private DBContext dbContext;
     private ArrayList<Product> productsFromJson = new ArrayList<Product>();
+    private ProductGroup selectedGroup = null;
 
     /**
      * @param groupPane
@@ -121,7 +122,6 @@ public class AddNewGroupController extends AnchorPane {
             alert.showAndWait();
             return;
         }
-
         ProductGroup productGroup = new ProductGroup(imageView.getImage(), nameField.getText(), descriptionField.getText());
         CardController cardController = new CardController(productGroup, cards, products, groupPane, dbContext);
         productGroup.setProducts(productsFromJson);
@@ -154,6 +154,7 @@ public class AddNewGroupController extends AnchorPane {
             alert.showAndWait();
         }
         productGroup.updateImage();
+        selectedGroup = productGroup;
         imageView.setImage(productGroup.getGroupIcon());
         nameField.setText(productGroup.getName());
         descriptionField.setText(productGroup.getDescription());

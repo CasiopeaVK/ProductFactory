@@ -2,69 +2,42 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Созданая карта появляется на экране">
-      <change afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/GroupInfoController$5.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/MainController$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ProductFactory/db/DBContext$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/title.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/ProductFactory/db/DBContext$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/ProductFactory/db/history.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/ProductFactory/db/history.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/ProductFactory/package.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/db/history.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/db/history.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/package.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DB.json" beforeDir="false" afterPath="$PROJECT_DIR$/DB.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProductFactory.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ProductFactory.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/Styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/Styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/AddNewGroupController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/AddNewGroupController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/AddNewGroupController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/AddNewGroupController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/CardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/CardController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/EditWindowController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/EditWindowController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/EditWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/EditWindowController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/GroupInfoController$1$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/GroupInfoController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/GroupInfoController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/GroupInfoController$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/GroupInfoController$2$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/GroupInfoController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/GroupInfoController$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/GroupInfoController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/GroupInfoController$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/GroupInfoController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/GroupInfoController$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/GroupInfoController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/GroupInfoController$5.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/GroupInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/GroupInfoController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/MainController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/MainController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/MainController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/MainController$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/ProductShowTable$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/ProductShowTable$1$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/ProductShowTable$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/ProductShowTable$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/ProductShowTable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/ProductShowTable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/controler/WriteOffTable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/controler/WriteOffTable.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/db/DB.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/db/DB.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/db/DBContext$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/db/DBContext$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/db/DBContext$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/db/DBContext$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/db/DBContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/db/DBContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/fxml/card.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/fxml/card.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/fxml/window_add_new_group.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/fxml/window_add_new_group.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/fxml/window_edit_group.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/fxml/window_edit_group.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/fxml/window_group_info.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/fxml/window_group_info.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/fxml/window_main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/fxml/window_main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/fxml/window_product_show.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/fxml/window_product_show.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/fxml/writeOffTable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/fxml/writeOffTable.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/model/Product.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/model/ProductGroup.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/model/ProductGroup.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductFactory/model/WriteOffProduct.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductFactory/model/WriteOffProduct.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controler/AddNewGroupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controler/AddNewGroupController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controler/CardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controler/CardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controler/EditWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controler/EditWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controler/GroupInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controler/GroupInfoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controler/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controler/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controler/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controler/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controler/ProductShowTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controler/ProductShowTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controler/WriteOffTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controler/WriteOffTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/db/DB.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/DB.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/db/DBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/DBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fxml/card.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxml/card.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fxml/window_add_new_group.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxml/window_add_new_group.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fxml/window_edit_group.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxml/window_edit_group.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fxml/window_group_info.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxml/window_group_info.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fxml/window_main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxml/window_main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fxml/window_product_show.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxml/window_product_show.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fxml/writeOffTable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxml/writeOffTable.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/ProductGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ProductGroup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/WriteOffProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/WriteOffProduct.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,18 +140,20 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Project" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Utils" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Lenovo\IdeaProjects\ProductFactory\src" />
       <recent name="C:\Users\Lenovo\IdeaProjects\ProductFactory\src\db" />
+      <recent name="C:\Users\Lenovo\IdeaProjects\ProductFactory\src" />
+      <recent name="C:\Users\vladk\IdeaProjects\ProductFactory\src\db" />
+      <recent name="C:\Users\vladk\IdeaProjects\ProductFactory\src" />
       <recent name="C:\Users\Lenovo\IdeaProjects\ProductFactory\src\fxml" />
       <recent name="C:\Users\Lenovo\IdeaProjects\ProductFactory\src\Utils" />
       <recent name="C:\Users\vladk\IdeaProjects\ProductFactory\src\db" />
@@ -306,6 +281,7 @@
       <workItem from="1587286555249" duration="4101000" />
       <workItem from="1587328364118" duration="2153000" />
       <workItem from="1587367319256" duration="7350000" />
+      <workItem from="1587368295903" duration="4791000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1587141825477</created>
@@ -418,10 +394,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="618" y="302" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1536.824@0.0.1536.824" timestamp="1587156984543" />
-    <state x="516" y="146" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1587372703308">
+    <state x="516" y="154" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1587328781065">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="516" y="146" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824@0.0.1536.824" timestamp="1587372703308" />
+    <state x="516" y="154" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824@0.0.1536.824" timestamp="1587328781065" />
     <state x="376" y="8" width="878" height="811" key="CommitChangelistDialog2" timestamp="1587224830333">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -430,46 +406,46 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="429" height="438" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1587315929108" />
-    <state x="473" y="153" key="FileChooserDialogImpl" timestamp="1587367341534">
+    <state x="473" y="153" key="FileChooserDialogImpl" timestamp="1587368362355">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="473" y="153" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1587367341534" />
+    <state x="473" y="153" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1587368362355" />
     <state x="603" y="328" width="354" height="168" key="Github.CreateGistDialog" timestamp="1587141648885">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="603" y="328" width="354" height="168" key="Github.CreateGistDialog/0.0.1536.824@0.0.1536.824" timestamp="1587141648885" />
-    <state width="1493" height="315" key="GridCell.Tab.0.bottom" timestamp="1587376456698">
+    <state width="1493" height="168" key="GridCell.Tab.0.bottom" timestamp="1587378550991">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="315" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587376456698" />
-    <state width="1493" height="315" key="GridCell.Tab.0.center" timestamp="1587376456698">
+    <state width="1493" height="168" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587378550991" />
+    <state width="1493" height="168" key="GridCell.Tab.0.center" timestamp="1587378550991">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="315" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587376456698" />
-    <state width="1493" height="315" key="GridCell.Tab.0.left" timestamp="1587376456697">
+    <state width="1493" height="168" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587378550991" />
+    <state width="1493" height="168" key="GridCell.Tab.0.left" timestamp="1587378550990">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="315" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587376456697" />
-    <state width="1493" height="315" key="GridCell.Tab.0.right" timestamp="1587376456698">
+    <state width="1493" height="168" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587378550990" />
+    <state width="1493" height="168" key="GridCell.Tab.0.right" timestamp="1587378550991">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="315" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587376456698" />
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1587372026663">
+    <state width="1493" height="168" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587378550991" />
+    <state width="1493" height="326" key="GridCell.Tab.1.bottom" timestamp="1587334434122">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587372026663" />
-    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1587372026663">
+    <state width="1493" height="326" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587334434122" />
+    <state width="1493" height="326" key="GridCell.Tab.1.center" timestamp="1587334434122">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1587372026663" />
-    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1587372026662">
+    <state width="1493" height="326" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1587334434122" />
+    <state width="1493" height="326" key="GridCell.Tab.1.left" timestamp="1587334434122">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1587372026662" />
-    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1587372026663">
+    <state width="1493" height="326" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1587334434122" />
+    <state width="1493" height="326" key="GridCell.Tab.1.right" timestamp="1587334434122">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1587372026663" />
+    <state width="1493" height="326" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1587334434122" />
     <state x="147" y="65" key="MergeDialog" timestamp="1587156991922">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -536,7 +512,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/controler/AddNewGroupController.java</url>
-          <line>130</line>
+          <line>113</line>
           <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

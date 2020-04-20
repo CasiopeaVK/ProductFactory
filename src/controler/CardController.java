@@ -100,7 +100,7 @@ public class CardController extends Pane {
     @FXML
     void openInfoWindow(ActionEvent event) {
         GroupInfoController groupInfoController = new GroupInfoController(group, products);
-        Scene scene = new Scene(groupInfoController, 400, 300);
+        Scene scene = new Scene(groupInfoController, 700, 500);
         Stage window = new Stage();
         groupInfoController.setStage(window);
         window.setTitle("Info group:");

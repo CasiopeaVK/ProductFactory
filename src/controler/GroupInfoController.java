@@ -141,6 +141,7 @@ public class GroupInfoController extends SplitPane {
         Integer quantity = Integer.parseInt(quantityField.getText());
         Double price = Double.parseDouble(priceField.getText());
         Product product = new Product(name, quantity, price, true);
+        product.setID(products.size());
         products.add(product);
         allProducts.add(product);
         allProducts.add(product);
@@ -162,6 +163,9 @@ public class GroupInfoController extends SplitPane {
         if (action.get() == ButtonType.OK) {
             products.removeAll(selectedItems);
             allProducts.removeAll(selectedItems);
+            for(int i = 0; i < products.size();i++){
+                products.get(i).setID(i);
+            }
         }
     }
 
