@@ -5,18 +5,30 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
+/**
+ * Main class
+ */
 public class Main extends Application {
 
+    /**
+     * @param primaryStage
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../fxml/window_main.fxml"));
         Parent root = (Parent) fxmlLoader.load();
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 800, 700));
+
+        Scene scene = new Scene(root, 925, 700);
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
         ((MainController) fxmlLoader.getController()).setStage(primaryStage);
     }

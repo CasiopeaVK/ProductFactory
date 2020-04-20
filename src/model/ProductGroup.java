@@ -13,6 +13,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Base64;
 
+/**
+ * product group class
+ */
 public class ProductGroup {
     @Expose
     private String imageString;
@@ -25,6 +28,11 @@ public class ProductGroup {
 
     private transient Image groupImage;
 
+    /**
+     * @param image
+     * @param name
+     * @param description
+     */
     public ProductGroup(Image image, String name, String description) {
         this.groupImage = image;
         this.name = name;
@@ -32,6 +40,9 @@ public class ProductGroup {
         setImageCode(image);
     }
 
+    /**
+     * @param image
+     */
     private void setImageCode(Image image) {
         try {
 
@@ -48,49 +59,82 @@ public class ProductGroup {
 
     }
 
+    /**
+     * @return product
+     */
     public ArrayList<Product> getProduct() {
         return products;
     }
 
+    /**
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @return icon
+     */
     public Image getGroupIcon() {
         return this.groupImage;
     }
 
+    /**
+     * @return description
+     */
     public String getDescription() {
         return this.description;
     }
 
+    /**
+     * @param image
+     */
     public void setGroupIcon(Image image) {
         this.groupImage = image;
         setImageCode(image);
     }
 
+    /**
+     * for update image after import
+     */
     public void updateImage() {
         byte[] imageByteArray = Base64.getDecoder().decode(this.imageString);
         ByteArrayInputStream bis = new ByteArrayInputStream(imageByteArray);
         this.groupImage = new Image(bis);
     }
 
+    /**
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * @param description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     * @return products
+     */
     public ArrayList<Product> getProducts() {
         return products;
     }
 
+    /**
+     * @param product
+     */
     public void addProduct(Product product) {
         this.products.add(product);
     }
 
+    /**
+     * @return price
+     */
     public Double getPrice() {
         double price = 0;
 
@@ -101,6 +145,9 @@ public class ProductGroup {
         return price;
     }
 
+    /**
+     * @return count of product
+     */
     public int getCountProducts() {
         int count = 0;
         for (Product product : products) {
@@ -113,6 +160,9 @@ public class ProductGroup {
         return name;
     }
 
+    /**
+     * @param products
+     */
     public void setProducts(ArrayList<Product> products) {
         this.products = products;
     }

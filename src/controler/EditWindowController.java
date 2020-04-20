@@ -202,6 +202,9 @@ public class EditWindowController extends AnchorPane {
         stage.close();
     }
 
+    /**
+     * @param event
+     */
     @FXML
     public void deleteGroup(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

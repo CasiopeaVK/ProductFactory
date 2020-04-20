@@ -34,6 +34,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class for window info control
+ */
 public class GroupInfoController extends SplitPane {
 
     @FXML
@@ -76,6 +79,10 @@ public class GroupInfoController extends SplitPane {
     private ArrayList<Product> allProducts;
     private Stage stage;
 
+    /**
+     * @param group
+     * @param products
+     */
     public GroupInfoController(ProductGroup group, ArrayList<Product> products) {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../fxml/window_group_info.fxml"));
@@ -94,6 +101,9 @@ public class GroupInfoController extends SplitPane {
         setValidation();
     }
 
+    /**
+     * @param stage
+     */
     public void setStage(Stage stage) {
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
@@ -105,9 +115,20 @@ public class GroupInfoController extends SplitPane {
         });
     }
 
+    /**
+     * @param event
+     */
     @FXML
     void addProduct(ActionEvent event) {
         System.out.println("KEK");
+        if (isConsist()) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("This name is used!");
+            alert.showAndWait();
+            return;
+        }
         if (!nameField.validate() || !quantityField.validate() || !priceField.validate()) {
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -120,9 +141,15 @@ public class GroupInfoController extends SplitPane {
         Integer quantity = Integer.parseInt(quantityField.getText());
         Double price = Double.parseDouble(priceField.getText());
         Product product = new Product(name, quantity, price, true);
+        product.setID(products.size());
         products.add(product);
+        allProducts.add(product);
+        allProducts.add(product);
     }
 
+    /**
+     * @param actionEvent
+     */
     @FXML
     public void deleteProducts(ActionEvent actionEvent) {
         List<Product> selectedItems = tableView.getSelectionModel().getSelectedItems();
@@ -135,6 +162,10 @@ public class GroupInfoController extends SplitPane {
 
         if (action.get() == ButtonType.OK) {
             products.removeAll(selectedItems);
+            allProducts.removeAll(selectedItems);
+            for(int i = 0; i < products.size();i++){
+                products.get(i).setID(i);
+            }
         }
     }
 
@@ -143,6 +174,20 @@ public class GroupInfoController extends SplitPane {
 
     }
 
+    /**
+     * @return is consist name
+     */
+    private boolean isConsist(){
+        for(Product product:allProducts){
+            if(product.getName().equals(nameField.getText()))
+                return true;
+        }
+        return false;
+    }
+
+    /**
+     * add validation for form
+     */
     private void setValidation() {
         RequiredFieldValidator textValidator = new RequiredFieldValidator();
         textValidator.setMessage("No empty input!");
@@ -173,11 +218,17 @@ public class GroupInfoController extends SplitPane {
     }
 
 
+    /**
+     * @param group
+     */
     private void initializeTable(ProductGroup group) {
         initializeColumn();
         initializeFilterData(group);
     }
 
+    /**
+     * @param group
+     */
     private void initializeFilterData(ProductGroup group) {
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         tableView.setEditable(true);
@@ -208,11 +259,18 @@ public class GroupInfoController extends SplitPane {
 
     }
 
+    /**
+     * @param group
+     * @return
+     */
     private ObservableList<Product> getDataFromGroup(ProductGroup group) {
         ArrayList<Product> productArrayList = (ArrayList<Product>)group.getProducts().clone();
         return FXCollections.observableList(productArrayList);
     }
 
+    /**
+     * initialize column in table
+     */
     private void initializeColumn() {
         col_Id.setCellValueFactory(new PropertyValueFactory<Product, Integer>("ID"));
         col_Name.setCellValueFactory(new PropertyValueFactory<Product, String>("Name"));

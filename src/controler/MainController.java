@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.*;
 import db.DBContext;
+import javafx.animation.FadeTransition;
+import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,6 +20,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.stage.WindowEvent;
 import model.Product;
 import model.ProductGroup;
@@ -32,7 +35,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable {
+/**
+ * Control main window
+ */
+public class MainController implements Initializable{
     @FXML
     private Tab statisticWindow;
 
@@ -128,6 +134,10 @@ public class MainController implements Initializable {
     private ProductGroup currentGroup;
     private Product currentProduct;
 
+    /**
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         groupScrollPane.widthProperty().addListener((observableValue, number, t1) -> groupTilePane.setPrefWidth(groupScrollPane.getWidth()));
@@ -140,8 +150,8 @@ public class MainController implements Initializable {
         }
         productGroups = new ArrayList<ProductGroup>();
         try {
-            dbContext = new DBContext(new File("C:\\Users\\vladk\\IdeaProjects\\ProductFactory\\src\\db\\DB.json"),
-                    new File("C:\\Users\\vladk\\IdeaProjects\\ProductFactory\\src\\db\\history.json"));
+            dbContext = new DBContext(new File("src/db/DB.json"),
+                    new File("src/db/history.json"));
             productGroups = dbContext.getProductGroups();
             writeOffProductArrayList = dbContext.getWriteOffProducts();
         } catch (FileNotFoundException e) {
@@ -170,6 +180,10 @@ public class MainController implements Initializable {
         initWriteOffTable();
     }
 
+    /**
+     * @param stage
+     */
+
     public void setStage(Stage stage) {
         this.stage = stage;
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -185,6 +199,9 @@ public class MainController implements Initializable {
         });
     }
 
+    /**
+     * init write table
+     */
     private void initWriteOffTable() {
         WriteOffTable writeOffTable = new WriteOffTable(writeOffProductArrayList);
         this.writeOffTable = writeOffTable;
@@ -195,6 +212,7 @@ public class MainController implements Initializable {
         File file = new File("C:\\Users\\vladk\\IdeaProjects\\ProductFactory\\src\\package.jpg");
         Image image = new Image("package.jpg");
         ArrayList<ProductGroup> groups = new ArrayList<ProductGroup>();
+
         for (int i = 0; i < 5; i++) {
             ProductGroup productGroup = new ProductGroup(image, "STAS" + i, "norm");
             for (int j = 0; j < 20; j++) {
@@ -213,6 +231,10 @@ public class MainController implements Initializable {
         fileWriter.close();
     }
 
+    /**
+     * @param group
+     * @throws IOException
+     */
     private void addGroupToCanvas(ProductGroup group) throws IOException {
         CardController cardController = new CardController(group, cards, products, groupTilePane, dbContext);
         groupTilePane.getChildren().add(cardController);
@@ -220,6 +242,9 @@ public class MainController implements Initializable {
         products.addAll(cardController.getGroup().getProduct());
     }
 
+    /**
+     * @param event
+     */
     @FXML
     void writeOffProducts(ActionEvent event) {
         System.out.println("KEK");
@@ -249,6 +274,9 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * @param actionEvent
+     */
     @FXML
     public void addNewGroup(ActionEvent actionEvent) {
         AddNewGroupController groupController = new AddNewGroupController(groupTilePane, cards, products, dbContext);
@@ -260,8 +288,18 @@ public class MainController implements Initializable {
 
     }
 
+    /**
+     * Initialize check boxes
+     */
     @FXML
     private void initCheckBoxPlate() {
+        btn_createDiagram.setVisible(false);
+        FadeTransition ft = new FadeTransition(Duration.millis(0), btn_createDiagram);
+        ft.setFromValue(1.0);
+        ft.setToValue(0);
+        ft.setAutoReverse(false);
+        ft.play();
+
         setStatistic();
 
         for (JFXCheckBox box : checkBoxes) {
@@ -272,11 +310,41 @@ public class MainController implements Initializable {
         for (CardController card : cards) {
             JFXCheckBox box = new JFXCheckBox();
             box.setText(card.getName());
+            box.setOnAction(actionEvent -> showBtn());
             checkBoxes.add(box);
             checkBoxPlate.getChildren().add(box);
         }
     }
 
+    /**
+     * Fade in button
+     */
+    private void showBtn(){
+        if(btn_createDiagram.isVisible())
+            return;
+        btn_createDiagram.setVisible(true);
+        FadeTransition ft = new FadeTransition(Duration.millis(500), btn_createDiagram);
+        ft.setFromValue(0);
+        ft.setToValue(1);
+        ft.setAutoReverse(false);
+        ft.play();
+    }
+
+    /**
+     * Fade out button
+     */
+    private void fadeOutBtn(){
+        FadeTransition ft = new FadeTransition(Duration.millis(500), btn_createDiagram);
+        ft.setFromValue(1);
+        ft.setToValue(0);
+        ft.setOnFinished(event -> btn_createDiagram.setVisible(false));
+        ft.setAutoReverse(false);
+        ft.play();
+    }
+
+    /**
+     * Set statistic in table
+     */
     private void setStatistic() {
         countOfGroupLabel.setText("" + cards.size());
 
@@ -292,17 +360,26 @@ public class MainController implements Initializable {
 
     }
 
+    /**
+     * Add cards
+     */
     private void addCardsGroupToCanvas() {
         for (CardController card : cards)
             groupTilePane.getChildren().add(card);
     }
 
+    /**
+     * Remove cards
+     */
     private void removeAllCardsFromCanvas() {
         for (CardController card : cards) {
             groupTilePane.getChildren().remove(card);
         }
     }
 
+    /**
+     * Sort cards bu alphabet
+     */
     @FXML
     public void sortCardByAlphabet() {
         removeAllCardsFromCanvas();
@@ -316,6 +393,9 @@ public class MainController implements Initializable {
         addCardsGroupToCanvas();
     }
 
+    /**
+     * Sort cards by cost
+     */
     @FXML
     public void sortCardByCost() {
         removeAllCardsFromCanvas();
@@ -325,6 +405,9 @@ public class MainController implements Initializable {
         addCardsGroupToCanvas();
     }
 
+    /**
+     * Sort cards by count
+     */
     @FXML
     public void sortByCountProducts() {
         removeAllCardsFromCanvas();
@@ -332,6 +415,9 @@ public class MainController implements Initializable {
         addCardsGroupToCanvas();
     }
 
+    /**
+     * @param event
+     */
     @FXML
     void showProducts(ActionEvent event) {
         //TODO insert table
@@ -346,13 +432,17 @@ public class MainController implements Initializable {
             }
         }
         ProductShowTable showTable = new ProductShowTable(showList);
-        Scene scene = new Scene(showTable, 400, 300);
+        Scene scene = new Scene(showTable, 600, 500);
         Stage window = new Stage();
         window.setTitle("Show table");
         window.setScene(scene);
+        window.setResizable(false);
         window.show();
     }
 
+    /**
+     * Choose product in combobox
+     */
     @FXML
     public void chooseProductGroupListener() {
         if (chooseProductGroup.getValue() == null)
@@ -368,6 +458,9 @@ public class MainController implements Initializable {
         chooseProduct.setItems(listProduct);
     }
 
+    /**
+     * Add group to combobox
+     */
     public void addComboBoxGroup() {
         if (!writeWindow.isSelected())
             return;
@@ -380,6 +473,9 @@ public class MainController implements Initializable {
         chooseProductGroup.setItems(listGroup);
     }
 
+    /**
+     * Choose product in combobox
+     */
     @FXML
     public void chooseProductListener() {
         if (chooseProduct.getValue() == null) {
@@ -393,14 +489,21 @@ public class MainController implements Initializable {
         chooseSlider.setValue(1);
     }
 
+    /**
+     * Initialize slider for group
+     */
     private void initSlider() {
         chooseSlider.setMin(0);
         chooseSlider.setMax(0);
         chooseSlider.setValue(0);
     }
 
+    /**
+     * Main method for create diagrams
+     */
     @FXML
     public void createDiagram() {
+        fadeOutBtn();
         if (!statisticWindow.isSelected())
             return;
         ArrayList<CardController> show = new ArrayList<CardController>();
@@ -420,6 +523,9 @@ public class MainController implements Initializable {
         createDiagramCircle(show);
     }
 
+    /**
+     * @param show
+     */
     private void createDiagramCircle(ArrayList<CardController> show) {
         for (PieChart.Data data : dataCircle)
             diagramCircle.getData().remove(data);
@@ -433,6 +539,9 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * @param show
+     */
     private void createGistogram(ArrayList<CardController> show) {
 
         for (XYChart.Series<String, Number> dat : data)

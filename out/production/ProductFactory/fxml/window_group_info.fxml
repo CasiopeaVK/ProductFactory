@@ -2,35 +2,50 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root dividerPositions="0.32608695652173914" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="javafx.scene.control.SplitPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root dividerPositions="0.32608695652173914" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../Styles.css" type="javafx.scene.control.SplitPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <items>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <bottom>
-            <JFXButton fx:id="btn_confirm" onAction="#showGroup" text="Confirm" BorderPane.alignment="CENTER" />
+            <JFXButton fx:id="btn_confirm" onAction="#showGroup" styleClass="button_menu" text="Confirm" BorderPane.alignment="CENTER" />
          </bottom>
          <top>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <JFXTextField />
                   <JFXTextField fx:id="nameField" promptText="Enter name" />
-                  <JFXTextField fx:id="quantityField" promptText="Enter quantity" />
-                  <JFXTextField fx:id="priceField" promptText="Enter price" />
-                  <JFXButton fx:id="btn_addProduct" onAction="#addProduct" text="Add" />
-                  <JFXButton onAction="#deleteProducts" text="Remove" />
+                  <JFXTextField fx:id="quantityField" promptText="Enter quantity">
+                     <VBox.margin>
+                        <Insets top="13.0" />
+                     </VBox.margin></JFXTextField>
+                  <JFXTextField fx:id="priceField" promptText="Enter price">
+                     <VBox.margin>
+                        <Insets top="13.0" />
+                     </VBox.margin></JFXTextField>
+                  <JFXButton fx:id="btn_addProduct" alignment="CENTER" contentDisplay="CENTER" onAction="#addProduct" prefHeight="30.0" prefWidth="150.0" styleClass="custom-button" text="Add">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin></JFXButton>
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#deleteProducts" prefHeight="30.0" prefWidth="150.0" styleClass="custom-button" text="Remove">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin></JFXButton>
                </children>
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
             </VBox>
          </top>
       </BorderPane>
       <VBox>
          <children>
-            <JFXTextField fx:id="searchField" />
-            <TableView fx:id="tableView">
+            <JFXTextField fx:id="searchField" promptText="Search..." />
+            <TableView fx:id="tableView" VBox.vgrow="ALWAYS">
               <columns>
                 <TableColumn fx:id="col_Id" prefWidth="75.0" text="ID" />
                 <TableColumn fx:id="col_Name" prefWidth="75.0" text="Name" />

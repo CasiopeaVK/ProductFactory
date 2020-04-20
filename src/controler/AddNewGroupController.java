@@ -25,6 +25,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Controller window create new group
+ */
 public class AddNewGroupController extends AnchorPane {
     @FXML
     private JFXTextField nameField;
@@ -44,6 +47,7 @@ public class AddNewGroupController extends AnchorPane {
     @FXML
     private JFXButton btn_import;
 
+
     private Image image;
     private TilePane groupPane;
     private ArrayList<CardController> cards;
@@ -52,6 +56,12 @@ public class AddNewGroupController extends AnchorPane {
     private ArrayList<Product> productsFromJson = new ArrayList<Product>();
     private ProductGroup selectedGroup = null;
 
+    /**
+     * @param groupPane
+     * @param cards
+     * @param products
+     * @param dbContext
+     */
     public AddNewGroupController(TilePane groupPane, ArrayList<CardController> cards, ArrayList<Product> products, DBContext dbContext) {
         this.groupPane = groupPane;
         this.cards = cards;
@@ -70,6 +80,9 @@ public class AddNewGroupController extends AnchorPane {
         setValidation(nameField);
     }
 
+    /**
+     * Method for choose photo
+     */
     @FXML
     public void choosePhoto() {
         final FileChooser fileChooser = new FileChooser();
@@ -79,6 +92,10 @@ public class AddNewGroupController extends AnchorPane {
         imageView.setImage(image);
     }
 
+    /**
+     * @throws IOException
+     * Method for save group
+     */
     @FXML
     public void saveGroup() throws IOException {
         boolean uniqueName = true;
@@ -117,6 +134,10 @@ public class AddNewGroupController extends AnchorPane {
         stage.close();
     }
 
+    /**
+     * @param event
+     * Method for import from json
+     */
     @FXML
     void importFromJson(ActionEvent event) {
         System.out.println("KEKE");
@@ -140,6 +161,10 @@ public class AddNewGroupController extends AnchorPane {
         productsFromJson = productGroup.getProducts();
     }
 
+    /**
+     * @param textField
+     * Add validation to form
+     */
     public void setValidation(JFXTextField textField) {
         RequiredFieldValidator validator = new RequiredFieldValidator();
         textField.getValidators().add(validator);

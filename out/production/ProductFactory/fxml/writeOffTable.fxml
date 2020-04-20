@@ -3,7 +3,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 
-<fx:root fx:id="writeOffTable" type="javafx.scene.control.TableView" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="writeOffTable" stylesheets="@../Styles.css" type="javafx.scene.control.TableView" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <columns>
       <TableColumn fx:id="col_Date" prefWidth="75.0" text="Date" />
       <TableColumn fx:id="col_Name" prefWidth="75.0" text="Name" />

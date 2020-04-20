@@ -1,15 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" type="Pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #000;" stylesheets="@../Styles.css" type="Pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="imgGroup" fitHeight="120.0" fitWidth="166.0" layoutX="17.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-      <JFXButton fx:id="btn_info" layoutX="17.0" layoutY="161.0" onAction="#openInfoWindow" text="Info" />
-      <JFXButton fx:id="btn_refactor" layoutX="125.0" layoutY="161.0" onAction="#showEditWindow" text="Refactor" />
-      <Label fx:id="cardLabel" layoutX="86.0" layoutY="135.0" text="Label" />
+      <AnchorPane layoutX="20.0" layoutY="20.0" maxWidth="200.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0" styleClass="custom-card">
+         <children>
+            <HBox alignment="CENTER" prefHeight="120.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="imgGroup" fitHeight="120.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="custom-image" HBox.hgrow="ALWAYS">
+                     <image>
+                        <Image url="@../image.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+               </children>
+            </HBox>
+            <JFXButton fx:id="btn_info" layoutY="147.0" onAction="#openInfoWindow" prefWidth="80.0" styleClass="custom-button" text="Info" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+            <JFXButton fx:id="btn_refactor" layoutX="108.0" layoutY="147.0" onAction="#showEditWindow" prefWidth="80.0" styleClass="custom-button" text="Refactor" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+            <Label fx:id="cardLabel" layoutX="69.0" layoutY="121.0" maxWidth="180.0" prefWidth="160.0" text="Label" AnchorPane.leftAnchor="20.0">
+               <styleClass>
+                  <String fx:value="text-info" />
+                  <String fx:value="text-info-header" />
+               </styleClass>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
+   <padding>
+      <Insets left="10.0" right="10.0" top="20.0" />
+   </padding>
 </fx:root>
